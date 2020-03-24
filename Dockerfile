@@ -34,4 +34,5 @@ RUN git clone -b ${TFENV_VERSION} --single-branch --depth 1 \
 # AWS CLI
 RUN pip3 install awscli==${AWSCLI_VERSION}
 
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "/bin/bash", "-c" ]
+CMD [ "bash" ]
