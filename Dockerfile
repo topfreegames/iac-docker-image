@@ -27,7 +27,7 @@ RUN curl https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VER
       chmod +x /usr/bin/vault
 
 # tfenv (terraform)
-RUN git clone --single-branch --depth 1 --b ${TFENV_VERSION} \
+RUN git clone -b ${TFENV_VERSION} --single-branch --depth 1 \
       https://github.com/topfreegames/tfenv.git /opt/tfenv && \
       ln -s /opt/tfenv/bin/* /usr/local/bin
 
