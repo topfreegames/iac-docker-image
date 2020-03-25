@@ -20,7 +20,7 @@ RUN apk update && \
       curl=${CURL_VERSION} \
       grep=${GREP_VERSION} \
       git=${GIT_VERSION}   \
-      python3=${PYTHON_VERSIONl} \
+      python3=${PYTHON_VERSION} \
       make=${MAKE_VERSION}
 
 # Vault
