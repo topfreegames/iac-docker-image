@@ -11,6 +11,7 @@ ARG PYTHON_VERSION=3.8.2-r0
 ARG VAULT_VERSION=1.3.4
 ARG TFENV_VERSION=1.1.1
 ARG AWSCLI_VERSION=1.18.27
+ARG MAKE_VERSION=4.2.1-r2
 
 # Base dependencies
 RUN apk update && \
@@ -19,7 +20,8 @@ RUN apk update && \
       curl=${CURL_VERSION} \
       grep=${GREP_VERSION} \
       git=${GIT_VERSION}   \
-      python3=${PYTHON_VERSION}
+      python3=${PYTHON_VERSIONl} \
+      make=${MAKE_VERSION}
 
 # Vault
 RUN curl https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip --output - | \

@@ -10,3 +10,4 @@ This image is based on alpine linux and includes:
 - vault
 - tfenv (terraform)
 - awscli
+- make
