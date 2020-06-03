@@ -22,7 +22,7 @@ RUN apk update && \
       grep=${GREP_VERSION} \
       git=${GIT_VERSION}   \
       python3=${PYTHON_VERSION} \
-      make=${MAKE_VERSION}. \
+      make=${MAKE_VERSION} \
       jq=${JQ_VERSION}
 
 # Vault
