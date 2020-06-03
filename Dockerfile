@@ -7,6 +7,7 @@ ARG CURL_VERSION=7.67.0-r0
 ARG GREP_VERSION=3.3-r0
 ARG GIT_VERSION=2.24.3-r0
 ARG PYTHON_VERSION=3.8.2-r0
+ARG JQ_VERSION=1.6
 
 ARG VAULT_VERSION=1.3.4
 ARG TFENV_VERSION=1.1.1
@@ -21,7 +22,8 @@ RUN apk update && \
       grep=${GREP_VERSION} \
       git=${GIT_VERSION}   \
       python3=${PYTHON_VERSION} \
-      make=${MAKE_VERSION}
+      make=${MAKE_VERSION}. \
+      jq=${JQ_VERSION}
 
 # Vault
 RUN curl https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip --output - | \
