@@ -13,6 +13,7 @@ This image is based on alpine linux and includes:
 - tfenv (terraform)
 - awscli
 - make
+- jq
 
 ## Hosted at
 

@@ -2,16 +2,19 @@ FROM alpine:3
 
 LABEL maintainer="Wildlife Studios"
 
-ARG BASH_VERSION=5.0.11-r1
-ARG CURL_VERSION=7.67.0-r0
-ARG GREP_VERSION=3.3-r0
-ARG GIT_VERSION=2.24.3-r0
-ARG PYTHON_VERSION=3.8.2-r0
+ARG BASH_VERSION=5.0.17-r0
+ARG CURL_VERSION=7.69.1-r0
+ARG GREP_VERSION=3.4-r0
+ARG GIT_VERSION=2.26.2-r0
+ARG PYTHON_VERSION=3.8.3-r0
+ARG JQ_VERSION=1.6-r1
+ARG PY3_PIP_VERSION=20.1.1-r0
+
 
 ARG VAULT_VERSION=1.3.4
 ARG TFENV_VERSION=1.1.1
 ARG AWSCLI_VERSION=1.18.27
-ARG MAKE_VERSION=4.2.1-r2
+ARG MAKE_VERSION=4.3-r0
 
 # Base dependencies
 RUN apk update && \
@@ -21,7 +24,9 @@ RUN apk update && \
       grep=${GREP_VERSION} \
       git=${GIT_VERSION}   \
       python3=${PYTHON_VERSION} \
-      make=${MAKE_VERSION}
+      make=${MAKE_VERSION} \
+      py3-pip=${PY3_PIP_VERSION}  \
+      jq=${JQ_VERSION}
 
 # Vault
 RUN curl https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip --output - | \
