@@ -9,6 +9,8 @@ ARG GIT_VERSION=2.26.2-r0
 ARG PYTHON_VERSION=3.8.3-r0
 ARG JQ_VERSION=1.6-r1
 ARG PY3_PIP_VERSION=20.1.1-r0
+ARG ZIP_VERSION=3.0-r8
+
 
 
 ARG VAULT_VERSION=1.3.4
@@ -26,11 +28,13 @@ RUN apk update && \
       python3=${PYTHON_VERSION} \
       make=${MAKE_VERSION} \
       py3-pip=${PY3_PIP_VERSION}  \
-      jq=${JQ_VERSION}
+      jq=${JQ_VERSION} \
+      zip=${ZIP_VERSION}
+
 
 # Vault
 RUN curl https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip --output - | \
-      unzip -d /usr/bin/ - && \
+      busybox unzip -d /usr/bin/ - && \
       chmod +x /usr/bin/vault
 
 # tfenv (terraform)
