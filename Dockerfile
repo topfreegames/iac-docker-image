@@ -34,7 +34,7 @@ RUN apk update && \
 
 # Vault
 RUN curl https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip --output - | \
-      unzip -d /usr/bin/ - && \
+      busybox unzip -d /usr/bin/ - && \
       chmod +x /usr/bin/vault
 
 # tfenv (terraform)
