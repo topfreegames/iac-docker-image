@@ -14,6 +14,7 @@ This image is based on alpine linux and includes:
 - awscli
 - make
 - jq
+- kubectl
 
 ## Hosted at
 

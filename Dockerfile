@@ -17,6 +17,7 @@ ARG VAULT_VERSION=1.3.4
 ARG TFENV_VERSION=1.1.1
 ARG AWSCLI_VERSION=1.18.27
 ARG MAKE_VERSION=4.3-r0
+ARG KUBECTL_VERSION=v1.18.5
 
 # Base dependencies
 RUN apk update && \
@@ -44,6 +45,9 @@ RUN git clone -b ${TFENV_VERSION} --single-branch --depth 1 \
 
 # AWS CLI
 RUN pip3 install awscli==${AWSCLI_VERSION}
+
+# Kubectl
+ADD https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl /bin/kubectl
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
 CMD [ "bash" ]
