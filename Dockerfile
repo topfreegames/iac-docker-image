@@ -48,6 +48,7 @@ RUN pip3 install awscli==${AWSCLI_VERSION}
 
 # Kubectl
 ADD https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl /bin/kubectl
+RUN chmod u+x /bin/kubectl
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
 CMD [ "bash" ]
