@@ -50,5 +50,8 @@ RUN pip3 install awscli==${AWSCLI_VERSION}
 ADD https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl /bin/kubectl
 RUN chmod u+x /bin/kubectl
 
+# Terraform Provider Databricks
+RUN curl https://raw.githubusercontent.com/databrickslabs/terraform-provider-databricks/master/godownloader-databricks-provider.sh | bash -s -- -b $HOME/.terraform.d/plugins
+
 ENTRYPOINT [ "/bin/bash", "-c" ]
 CMD [ "bash" ]
