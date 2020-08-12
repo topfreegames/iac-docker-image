@@ -11,7 +11,7 @@ This image is based on alpine linux and includes:
 - git
 - vault
 - tfenv (terraform)
-- awscli
+- awscliv2
 - make
 - jq
 - kubectl
