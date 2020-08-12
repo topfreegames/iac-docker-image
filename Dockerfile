@@ -18,6 +18,7 @@ ARG TFENV_VERSION=1.1.1
 ARG AWSCLI_VERSION=1.18.27
 ARG MAKE_VERSION=4.3-r0
 ARG KUBECTL_VERSION=v1.18.5
+ARG DOCKER_VERSION=19.03.12-r0
 
 # Base dependencies
 RUN apk update && \
@@ -30,7 +31,8 @@ RUN apk update && \
       make=${MAKE_VERSION} \
       py3-pip=${PY3_PIP_VERSION}  \
       jq=${JQ_VERSION} \
-      zip=${ZIP_VERSION}
+      zip=${ZIP_VERSION} \
+      docker-cli=${DOCKER_VERSION}
 
 
 # Vault
