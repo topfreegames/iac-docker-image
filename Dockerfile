@@ -17,6 +17,7 @@ ARG TFENV_VERSION=1.1.1
 ARG AWSCLI_VERSION=1.18.27
 ARG MAKE_VERSION=4.3-r0
 ARG KUBECTL_VERSION=v1.18.5
+ARG OPA_VERSION=v0.25.2
 
 # Base dependencies
 RUN apk update && \
@@ -36,6 +37,11 @@ RUN apk update && \
 RUN curl https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip --output - | \
       busybox unzip -d /usr/bin/ - && \
       chmod +x /usr/bin/vault
+
+# OPA (Open Policy Agent)
+RUN curl -fsSL -o /usr/local/bin/opa https://github.com/open-policy-agent/opa/releases/download/${OPA_VERSION}/opa_linux_amd64 && \
+      chmod +x /usr/local/bin/opa && \
+      opa version
 
 # conftest
 RUN wget https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz && \
