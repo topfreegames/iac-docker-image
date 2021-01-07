@@ -15,6 +15,8 @@ This image is based on alpine linux and includes:
 - make
 - jq
 - kubectl
+- opa
+- conftest
 
 ## Hosted at
 
