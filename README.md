@@ -7,6 +7,7 @@
 
 Image used in our Infrastructe as Code pipelines.
 
+- `awscli`
 - `bash`
 - `curl`
 - `conftest`
@@ -17,9 +18,14 @@ Image used in our Infrastructe as Code pipelines.
 - `make`
 - `python3`
 - `pip43`
+- `terragrunt`
 - `tfenv`
 - `vault`
 - `zip`
+
+## AWSCLI notes
+
+This image uses awscli v1 by default. To enable usage of awscli v2 set the AWSCLIV2 environment variable to any value.  
 
 ## Latest versions
 
