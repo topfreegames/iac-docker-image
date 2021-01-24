@@ -16,6 +16,7 @@ ARG VAULT_VERSION=1.6.0
 ARG CONFTEST_VERSION=0.22.0
 ARG TFENV_VERSION=1.1.1
 ARG KUBECTL_VERSION=v1.20.0
+ARG TERRAGRUNT=v0.27.1
 
 # Base dependencies
 RUN apk update && \
@@ -45,12 +46,24 @@ RUN git clone -b ${TFENV_VERSION} --single-branch --depth 1 \
       https://github.com/topfreegames/tfenv.git /opt/tfenv && \
       ln -s /opt/tfenv/bin/* /usr/local/bin
 
-# AWS CLI
+# Terragrunt
+ADD https://github.com/gruntwork-io/terragrunt/releases/download/${TERRAGRUNT}/terragrunt_linux_amd64 /usr/local/bin/terragrunt
+RUN chmod +x /usr/local/bin/terragrunt
+
+# AWS CLI v1
+
+RUN pip3 install awscli
+
+# AWS CLI v2
 RUN curl -L https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip --output - | \
       busybox unzip -d /tmp/ - && \
       chmod +x -R /tmp/aws && \
-      ./tmp/aws/install && \
+      ./tmp/aws/install -i /usr/local/aws-cli-v2 -b /usr/local/bin/aws-cli-v2 && \
       rm -rf ./tmp/aws
+
+RUN echo "if [ ! -z \${AWSCLIV2} ]; then rm -f /usr/bin/aws; ln -s /usr/local/bin/aws-cli-v2/aws /usr/bin/aws; fi" >> ~/.shrc
+RUN echo "if [ ! -z \${AWSCLIV2} ]; then rm -f /usr/bin/aws; ln -s /usr/local/bin/aws-cli-v2/aws /usr/bin/aws; fi" >> ~/.bashrc
+ENV ENV="/root/.shrc"
 
 # Kubectl
 ADD https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl /bin/kubectl
