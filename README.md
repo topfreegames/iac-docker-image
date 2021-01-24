@@ -16,6 +16,7 @@ Image used in our Infrastructe as Code pipelines.
 - `jq`
 - `kubectl`
 - `make`
+- `open-policy-agent`
 - `python3`
 - `pip43`
 - `terragrunt`
