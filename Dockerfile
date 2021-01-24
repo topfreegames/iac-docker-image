@@ -17,7 +17,8 @@ ARG CONFTEST_VERSION=0.22.0
 ARG TFENV_VERSION=1.1.1
 ARG KUBECTL_VERSION=v1.20.0
 ARG TERRAGRUNT=v0.27.1
-
+ARG OPA_VERSION=v0.26.0
+ARG CONFTEST_VERSION=0.23.0
 
 # Base dependencies
 RUN apk update && \
@@ -44,7 +45,7 @@ RUN curl -fsSL -o /usr/local/bin/opa https://github.com/open-policy-agent/opa/re
       opa version
 
 # conftest
-RUN curl -L https://github.com/open-policy-agent/conftest/releases/download/v0.22.0/conftest_0.22.0_Linux_x86_64.tar.gz --output - | \
+RUN curl -L https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz --output - | \
       tar -xzf - -C /usr/local/bin
 
 # tfenv (terraform)
