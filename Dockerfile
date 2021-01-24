@@ -18,6 +18,7 @@ ARG TFENV_VERSION=1.1.1
 ARG KUBECTL_VERSION=v1.20.0
 ARG TERRAGRUNT=v0.27.1
 
+
 # Base dependencies
 RUN apk update && \
     apk add --no-cache \
@@ -36,6 +37,11 @@ RUN apk update && \
 RUN curl https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip --output - | \
       busybox unzip -d /usr/bin/ - && \
       chmod +x /usr/bin/vault
+
+# OPA (Open Policy Agent)
+RUN curl -fsSL -o /usr/local/bin/opa https://github.com/open-policy-agent/opa/releases/download/${OPA_VERSION}/opa_linux_amd64 && \
+      chmod +x /usr/local/bin/opa && \
+      opa version
 
 # conftest
 RUN curl -L https://github.com/open-policy-agent/conftest/releases/download/v0.22.0/conftest_0.22.0_Linux_x86_64.tar.gz --output - | \
