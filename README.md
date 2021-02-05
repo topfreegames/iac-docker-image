@@ -18,7 +18,7 @@ Image used in our Infrastructure as Code pipelines.
 - `make`
 - `open-policy-agent`
 - `python3`
-- `pip43`
+- `pip3`
 - `terragrunt`
 - `tfenv`
 - `vault`
