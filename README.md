@@ -5,7 +5,7 @@
 
 # Infrastructure as Code Image
 
-Image used in our Infrastructe as Code pipelines.
+Image used in our Infrastructure as Code pipelines.
 
 - `awscli`
 - `bash`
