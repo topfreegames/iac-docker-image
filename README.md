@@ -3,7 +3,7 @@
 [![Docker Repository on Docker Hub](https://img.shields.io/badge/Docker%20Hub-ready-%23099cec)](https://hub.docker.com/r/tfgco/iac-ci)
 [![Docker Repository on Quay](https://img.shields.io/badge/Quay.io-ready-%23BE0000)](https://quay.io/repository/tfgco/iac-ci)
 
-# Infrastructe as Code Image
+# Infrastructure as Code Image
 
 Image used in our Infrastructe as Code pipelines.
 
