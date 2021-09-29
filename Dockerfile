@@ -3,7 +3,7 @@ FROM frolvlad/alpine-glibc:alpine-3.12
 LABEL maintainer="Wildlife Studios"
 
 ARG BASH_VERSION=5.0.17-r0
-ARG CURL_VERSION=7.77.0-r0
+ARG CURL_VERSION=7.79.1-r0
 ARG GREP_VERSION=3.4-r0
 ARG GIT_VERSION=2.26.3-r0
 ARG JQ_VERSION=1.6-r1
@@ -18,6 +18,8 @@ ARG TFENV_VERSION=1.1.1
 ARG KUBECTL_VERSION=v1.21.1
 ARG TERRAGRUNT=v0.29.7
 ARG OPA_VERSION=v0.29.4
+ARG PSQL_VERSION=12.8-r0
+ARG MYSQL_VERSION=10.4.21-r0
 
 # Base dependencies
 RUN apk update && \
@@ -30,7 +32,9 @@ RUN apk update && \
       make=${MAKE_VERSION} \
       py3-pip=${PY3_PIP_VERSION}  \
       jq=${JQ_VERSION} \
-      zip=${ZIP_VERSION}
+      zip=${ZIP_VERSION} \
+      postgresql-client=${PSQL_VERSION} \
+      mysql-client=${MYSQL_VERSION} 
 
 
 # Vault
