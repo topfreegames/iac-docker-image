@@ -20,6 +20,7 @@ ARG TERRAGRUNT=v0.29.7
 ARG OPA_VERSION=v0.29.4
 ARG PSQL_VERSION=12.8-r0
 ARG MYSQL_VERSION=10.4.21-r0
+ARG ROVER_VERSION=0.2.2
 
 # Base dependencies
 RUN apk update && \
@@ -50,6 +51,13 @@ RUN curl -fsSL -o /usr/local/bin/opa https://github.com/open-policy-agent/opa/re
 # conftest
 RUN curl -L https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz --output - | \
       tar -xzf - -C /usr/local/bin
+
+# rover
+RUN curl -LO https://github.com/im2nguyen/rover/releases/download/v${ROVER_VERSION}/rover_${ROVER_VERSION}_linux_amd64.zip && \
+        busybox unzip -d /tmp/ rover_${ROVER_VERSION}_linux_amd64.zip && \
+        mv /tmp/rover_v${ROVER_VERSION} /usr/bin/rover && \
+        chmod +x /usr/bin/rover && \
+        rm -r /tmp/*
 
 # tfenv (terraform)
 RUN git clone -b ${TFENV_VERSION} --single-branch --depth 1 \
