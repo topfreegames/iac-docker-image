@@ -60,7 +60,7 @@ RUN curl -LO https://github.com/im2nguyen/rover/releases/download/v${ROVER_VERSI
         busybox unzip -d /tmp/ rover_${ROVER_VERSION}_linux_amd64.zip && \
         mv /tmp/rover_v${ROVER_VERSION} /usr/bin/rover && \
         chmod +x /usr/bin/rover && \
-        rm -r /tmp/*
+        rm -r /tmp/* && rm rover_${ROVER_VERSION}_linux_amd64.zip
 
 # tfenv (terraform)
 RUN git clone -b ${TFENV_VERSION} --single-branch --depth 1 \
