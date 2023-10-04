@@ -10,6 +10,7 @@ Image used in our Infrastructure as Code pipelines.
 - `bash`
 - `curl`
 - `conftest`
+- `flux2`
 - `grep`
 - `git`
 - `jq`
