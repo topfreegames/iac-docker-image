@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-glibc:alpine-3.18
+FROM alpine:3.18
 
 LABEL maintainer="Wildlife Studios"
 
@@ -8,11 +8,10 @@ ARG GREP_VERSION=3.10-r1
 ARG GIT_VERSION=2.40.1-r0
 ARG JQ_VERSION=1.6-r3
 ARG MAKE_VERSION=4.4.1-r1
-ARG PYTHON_VERSION=3.11.6-r1
+ARG PYTHON_VERSION=3.11.6-r0
 ARG PY3_PIP_VERSION=23.1.2-r0
 ARG ZIP_VERSION=3.0-r12
 ARG OPENSSH_VERSION=9.3_p2-r0
-ARG FLUX_VERSION=2.1.1-r0
 
 
 ARG VAULT_VERSION=1.13.5
@@ -20,7 +19,6 @@ ARG CONFTEST_VERSION=0.46.0
 ARG TFENV_VERSION=1.1.1
 ARG KUBECTL_VERSION=v1.27.6
 ARG TERRAGRUNT=v0.51.8
-ARG OPA_VERSION=v0.57.0
 ARG PSQL_VERSION=15.4-r0
 ARG MYSQL_VERSION=10.11.5-r0
 ARG ROVER_VERSION=0.3.3
@@ -39,19 +37,15 @@ RUN apk update && \
       zip=${ZIP_VERSION} \
       postgresql15-client=${PSQL_VERSION} \
       mysql-client=${MYSQL_VERSION} \
-      openssh=${OPENSSH_VERSION} \
-      flux=${FLUX_VERSION}
+      openssh=${OPENSSH_VERSION}
 
+RUN apk add --no-cache helm aws-cli --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community
+RUN apk add --no-cache opa flux --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing
 
 # Vault
 RUN curl https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip --output - | \
       busybox unzip -d /usr/bin/ - && \
       chmod +x /usr/bin/vault
-
-# OPA (Open Policy Agent)
-RUN curl -fsSL -o /usr/local/bin/opa https://github.com/open-policy-agent/opa/releases/download/${OPA_VERSION}/opa_linux_amd64 && \
-      chmod +x /usr/local/bin/opa && \
-      opa version
 
 # conftest
 RUN curl -L https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz --output - | \
@@ -72,21 +66,6 @@ RUN git clone -b ${TFENV_VERSION} --single-branch --depth 1 \
 # Terragrunt
 ADD https://github.com/gruntwork-io/terragrunt/releases/download/${TERRAGRUNT}/terragrunt_linux_amd64 /usr/local/bin/terragrunt
 RUN chmod +x /usr/local/bin/terragrunt
-
-# AWS CLI v1
-
-RUN pip3 install awscli
-
-# AWS CLI v2
-RUN curl -L https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip --output - | \
-      busybox unzip -d /tmp/ - && \
-      chmod +x -R /tmp/aws && \
-      ./tmp/aws/install -i /usr/local/aws-cli-v2 -b /usr/local/bin/aws-cli-v2 && \
-      rm -rf ./tmp/aws
-
-RUN echo "if [ ! -z \${AWSCLIV2} ]; then rm -f /usr/bin/aws; ln -s /usr/local/bin/aws-cli-v2/aws /usr/bin/aws; fi" >> ~/.shrc
-RUN echo "if [ ! -z \${AWSCLIV2} ]; then rm -f /usr/bin/aws; ln -s /usr/local/bin/aws-cli-v2/aws /usr/bin/aws; fi" >> ~/.bashrc
-ENV ENV="/root/.shrc"
 
 # Kubectl
 ADD https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl /bin/kubectl
