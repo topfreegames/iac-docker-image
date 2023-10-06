@@ -13,7 +13,6 @@ ARG PY3_PIP_VERSION=23.1.2-r0
 ARG ZIP_VERSION=3.0-r12
 ARG OPENSSH_VERSION=9.3_p2-r0
 ARG KUSTOMIZE_VERSION=5.0.2-r2
-ARG YQ_VERSION=4.3.3-r3
 
 
 ARG VAULT_VERSION=1.13.5
@@ -40,10 +39,9 @@ RUN apk update && \
       postgresql15-client=${PSQL_VERSION} \
       mysql-client=${MYSQL_VERSION} \
       openssh=${OPENSSH_VERSION} \
-      kustomize=${KUSTOMIZE_VERSION} \
-      yq=${YQ_VERSION}
+      kustomize=${KUSTOMIZE_VERSION}
 
-RUN apk add --no-cache helm aws-cli --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community
+RUN apk add --no-cache helm aws-cli yq --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community
 RUN apk add --no-cache opa flux --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing
 
 # Vault
