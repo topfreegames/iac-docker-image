@@ -23,6 +23,7 @@ ARG TERRAGRUNT=v0.51.8
 ARG PSQL_VERSION=15.4-r0
 ARG MYSQL_VERSION=10.11.5-r0
 ARG ROVER_VERSION=0.3.3
+ARG HELM_DIFF_VERSION=v3.8.1
 
 # Base dependencies
 RUN apk update && \
@@ -72,6 +73,9 @@ RUN chmod +x /usr/local/bin/terragrunt
 # Kubectl
 ADD https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl /bin/kubectl
 RUN chmod u+x /bin/kubectl
+
+#Helm Diff
+RUN helm plugin install https://github.com/databus23/helm-diff --version "${HELM_DIFF_VERSION}"
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
 CMD [ "bash" ]
