@@ -24,22 +24,3 @@ jobs:
       run: docker tag tfgco/iac-ci:latest tfgco/iac-ci:${{steps.vars.outputs.tag}} 
     - name: Push the tagged release Docker image
       run: docker push tfgco/iac-ci:${{steps.vars.outputs.tag}} 
-  quayio-build-push:
-    name: Quay.io Build and Push
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Get the current release version 
-      id: vars
-      run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag quay.io/tfgco/iac-ci:latest
-    - name: Login to Quay.io Registry
-      run: echo ${{ secrets.QUAYIO_TOKEN }} | docker login -u ${{ secrets.QUAYIO_USERNAME }} --password-stdin quay.io
-    - name: Push the latest Docker image
-      run: docker push quay.io/tfgco/iac-ci:latest
-    - name: Tag the release Docker image
-      run: docker tag quay.io/tfgco/iac-ci:latest quay.io/tfgco/iac-ci:${{steps.vars.outputs.tag}} 
-    - name: Push the tagged release Docker image
-      run: docker push quay.io/tfgco/iac-ci:${{steps.vars.outputs.tag}} 
