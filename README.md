@@ -1,6 +1,5 @@
 [![Build status](https://github.com/topfreegames/iac-docker-image/workflows/Publish%20new%20Docker%20image/badge.svg)](https://github.com/topfreegames/iac-docker-image/actions)
 [![Docker Repository on Docker Hub](https://img.shields.io/badge/Docker%20Hub-ready-%23099cec)](https://hub.docker.com/r/tfgco/iac-ci)
-[![Docker Repository on Quay (Deprecated)](https://img.shields.io/badge/Quay.io-ready-%23BE0000)](https://quay.io/repository/tfgco/iac-ci)
 
 # Infrastructure as Code Image
 
@@ -36,6 +35,6 @@ This image uses awscli v1 by default. To enable usage of awscli v2 set the AWSCL
 
 ## Hosted at
 
-Quay: https://quay.io/repository/tfgco/iac-ci
-
 Docker Hub: https://hub.docker.com/r/tfgco/iac-ci
+
+Quay (Deprecated): https://quay.io/repository/tfgco/iac-ci
