@@ -25,6 +25,7 @@ ARG MYSQL_VERSION=10.11.8-r0
 ARG ROVER_VERSION=0.3.3
 ARG HELM_DIFF_VERSION=v3.8.2
 
+# Base dependencies
 RUN apk update && \
     apk add --no-cache \
       bash=${BASH_VERSION} \
