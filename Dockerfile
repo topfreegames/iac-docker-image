@@ -43,7 +43,7 @@ RUN apk update && \
       kustomize=${KUSTOMIZE_VERSION}
 
 RUN apk add --no-cache helm aws-cli yq --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community
-RUN apk add --no-cache opa flux --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing
+RUN apk add --no-cache opa flux=2.3.0 --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing
 
 # Vault
 RUN curl https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip --output - | \
