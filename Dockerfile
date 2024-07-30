@@ -25,7 +25,6 @@ ARG MYSQL_VERSION=10.11.8-r0
 ARG ROVER_VERSION=0.3.3
 ARG HELM_DIFF_VERSION=v3.8.2
 
-# Base dependencies
 RUN apk update && \
     apk add --no-cache \
       bash=${BASH_VERSION} \
@@ -42,8 +41,16 @@ RUN apk update && \
       openssh=${OPENSSH_VERSION} \
       kustomize=${KUSTOMIZE_VERSION}
 
-RUN apk add --no-cache helm aws-cli yq --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community
-RUN apk add --no-cache opa flux=2.3.0 --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing
+RUN apk add --no-cache \
+      helm \
+      aws-cli \
+      yq \
+      flux \
+      --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community
+
+# OPA
+RUN curl -L -o /usr/bin/opa https://github.com/open-policy-agent/opa/releases/download/v0.11.0/opa_linux_amd64 \
+    && chmod +x /usr/bin/opa
 
 # Vault
 RUN curl https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip --output - | \
