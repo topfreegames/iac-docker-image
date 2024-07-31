@@ -50,7 +50,7 @@ RUN apk add --no-cache \
       --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community
 
 # OPA
-RUN curl -L -o /usr/bin/opa https://github.com/open-policy-agent/opa/releases/download/v0.11.0/opa_linux_amd64 \
+RUN curl -L -o /usr/bin/opa https://github.com/open-policy-agent/opa/releases/download/v0.67.0/opa_linux_amd64 \
     && chmod +x /usr/bin/opa
 
 # Vault
