@@ -3,7 +3,7 @@ FROM alpine:3.20
 LABEL maintainer="Wildlife Studios"
 
 ARG BASH_VERSION=5.2.26-r0
-ARG CURL_VERSION=8.8.0-r0
+ARG CURL_VERSION=8.9.0-r0
 ARG GREP_VERSION=3.11-r0
 ARG GIT_VERSION=2.45.2-r0
 ARG JQ_VERSION=1.7.1-r0
@@ -12,7 +12,7 @@ ARG PYTHON_VERSION=3.12.3-r1
 ARG PY3_PIP_VERSION=24.0-r2
 ARG ZIP_VERSION=3.0-r12
 ARG OPENSSH_VERSION=9.7_p1-r4
-ARG KUSTOMIZE_VERSION=5.3.0-r5
+ARG KUSTOMIZE_VERSION=5.3.0-r6
 
 
 ARG VAULT_VERSION=1.13.5
@@ -42,8 +42,16 @@ RUN apk update && \
       openssh=${OPENSSH_VERSION} \
       kustomize=${KUSTOMIZE_VERSION}
 
-RUN apk add --no-cache helm aws-cli yq --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community
-RUN apk add --no-cache opa flux --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing
+RUN apk add --no-cache \
+      helm \
+      aws-cli \
+      yq \
+      flux \
+      --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community
+
+# OPA
+RUN curl -L -o /usr/bin/opa https://github.com/open-policy-agent/opa/releases/download/v0.67.0/opa_linux_amd64 \
+    && chmod +x /usr/bin/opa
 
 # Vault
 RUN curl https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip --output - | \
