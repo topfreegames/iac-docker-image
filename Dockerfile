@@ -20,7 +20,7 @@ ARG YQ_VERSION=4.44.5-r0
 
 ARG VAULT_VERSION=1.17.5
 ARG CONFTEST_VERSION=0.46.0
-ARG TFENV_VERSION=1.1.1
+ARG TFENV_VERSION=v3.0.0
 ARG KUBECTL_VERSION=v1.28.13
 ARG TERRAGRUNT=v0.69.9
 ARG PSQL_VERSION=15.10-r0
@@ -92,7 +92,7 @@ RUN apkArch="$(apk --print-arch)"; \
 
 # tfenv (terraform)
 RUN git clone -b ${TFENV_VERSION} --single-branch --depth 1 \
-    https://github.com/topfreegames/tfenv.git /opt/tfenv && \
+    https://github.com/tfutils/tfenv.git /opt/tfenv && \
     ln -s /opt/tfenv/bin/* /usr/local/bin
 
 # Terragrunt
