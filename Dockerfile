@@ -2,21 +2,21 @@ FROM alpine:3.21
 
 LABEL maintainer="Wildlife Studios"
 
-ARG BASH_VERSION=5.2.37-r0
-ARG CURL_VERSION=8.12.1-r1
-ARG GREP_VERSION=3.11-r0
-ARG GIT_VERSION=2.47.2-r0
-ARG JQ_VERSION=1.7.1-r0
-ARG MAKE_VERSION=4.4.1-r2
-ARG PYTHON_VERSION=3.12.10-r0
-ARG PY3_PIP_VERSION=24.3.1-r0
-ARG ZIP_VERSION=3.0-r13
-ARG OPENSSH_VERSION=9.9_p2-r0
-ARG KUSTOMIZE_VERSION=5.5.0-r4
-ARG FLUX_VERSION=2.4.0-r4
-ARG AWS_CLI_VERSION=2.22.10-r0
-ARG HELM_VERSION=3.16.3-r5
-ARG YQ_VERSION=4.44.5-r5
+ARG BASH_VERSION=5.2.37
+ARG CURL_VERSION=8.12.1
+ARG GREP_VERSION=3.11
+ARG GIT_VERSION=2.47.2
+ARG JQ_VERSION=1.7.1
+ARG MAKE_VERSION=4.4.1
+ARG PYTHON_VERSION=3.12.10
+ARG PY3_PIP_VERSION=24.3.1
+ARG ZIP_VERSION=3.0
+ARG OPENSSH_VERSION=9.9_p2
+ARG KUSTOMIZE_VERSION=5.5.0
+ARG FLUX_VERSION=2.4.0
+ARG AWS_CLI_VERSION=2.22.10
+ARG HELM_VERSION=3.16.3
+ARG YQ_VERSION=4.44.5
 
 ARG VAULT_VERSION=1.17.5
 ARG CONFTEST_VERSION=0.59.0
@@ -32,21 +32,21 @@ ARG OPA_VERSION=v1.4.2
 # Base dependencies
 RUN apk update && \
     apk add --no-cache \
-    bash=${BASH_VERSION} \
-    curl=${CURL_VERSION} \
-    grep=${GREP_VERSION} \
-    git=${GIT_VERSION}   \
-    python3=${PYTHON_VERSION} \
-    make=${MAKE_VERSION} \
-    py3-pip=${PY3_PIP_VERSION}  \
-    jq=${JQ_VERSION} \
-    zip=${ZIP_VERSION} \
-    postgresql15-client=${PSQL_VERSION} \
-    mysql-client=${MYSQL_VERSION} \
-    openssh=${OPENSSH_VERSION} \
-    kustomize=${KUSTOMIZE_VERSION} \
-    flux=${FLUX_VERSION} \
-    aws-cli=${AWS_CLI_VERSION} \
+    bash~=${BASH_VERSION} \
+    curl~=${CURL_VERSION} \
+    grep~=${GREP_VERSION} \
+    git~=${GIT_VERSION}   \
+    python3~=${PYTHON_VERSION} \
+    make~=${MAKE_VERSION} \
+    py3-pip~=${PY3_PIP_VERSION}  \
+    jq~=${JQ_VERSION} \
+    zip~=${ZIP_VERSION} \
+    postgresql15-client~=${PSQL_VERSION} \
+    mysql-client~=${MYSQL_VERSION} \
+    openssh~=${OPENSSH_VERSION} \
+    kustomize~=${KUSTOMIZE_VERSION} \
+    flux~=${FLUX_VERSION} \
+    aws-cli~=${AWS_CLI_VERSION} \
     helm \
     yq-go
 
