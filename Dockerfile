@@ -47,8 +47,8 @@ RUN apk update && \
     kustomize~=${KUSTOMIZE_VERSION} \
     flux~=${FLUX_VERSION} \
     aws-cli~=${AWS_CLI_VERSION} \
-    helm \
-    yq-go
+    helm~=${HELM_VERSION} \
+    yq-go~=${YQ_VERSION}
 
 # OPA
 RUN apkArch="$(apk --print-arch)"; \
