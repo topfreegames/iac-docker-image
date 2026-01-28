@@ -7,22 +7,29 @@ Image used in our Infrastructure as Code pipelines.
 
 - `awscli`
 - `bash`
-- `curl`
 - `conftest`
+- `curl`
 - `flux2`
-- `grep`
 - `git`
+- `grep`
+- `helm`
+- `helm-diff`
 - `jq`
 - `kubectl`
+- `kustomize`
 - `make`
+- `mysql-client`
 - `open-policy-agent`
+- `openssh`
+- `postgresql-client`
 - `python3`
 - `pip3`
+- `rover`
 - `terragrunt`
 - `tfenv`
 - `vault`
+- `yq`
 - `zip`
-- `rover`
 
 ## AWSCLI notes
 
