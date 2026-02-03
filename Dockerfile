@@ -3,12 +3,12 @@ FROM alpine:3.21
 LABEL maintainer="Wildlife Studios"
 
 ARG BASH_VERSION=5.2.37
-ARG CURL_VERSION=8.12.1
+ARG CURL_VERSION=8.14.1
 ARG GREP_VERSION=3.11
-ARG GIT_VERSION=2.47.2
+ARG GIT_VERSION=2.47.3
 ARG JQ_VERSION=1.7.1
 ARG MAKE_VERSION=4.4.1
-ARG PYTHON_VERSION=3.12.10
+ARG PYTHON_VERSION=3.12.12
 ARG PY3_PIP_VERSION=24.3.1
 ARG ZIP_VERSION=3.0
 ARG OPENSSH_VERSION=9.9_p2
@@ -23,8 +23,8 @@ ARG CONFTEST_VERSION=0.59.0
 ARG TFENV_VERSION=v3.0.0
 ARG KUBECTL_VERSION=v1.28.13
 ARG TERRAGRUNT=v0.69.9
-ARG PSQL_VERSION=15.12-r0
-ARG MYSQL_VERSION=11.4.5-r0
+ARG PSQL_VERSION=15.13-r0
+ARG MYSQL_VERSION=11.4.8-r0
 ARG ROVER_VERSION=0.3.3
 ARG HELM_DIFF_VERSION=v3.9.10
 ARG OPA_VERSION=v1.4.2
@@ -56,7 +56,7 @@ RUN apkArch="$(apk --print-arch)"; \
       x86_64) arch=amd64 ;; \
       aarch64) arch=arm64 ;; \
     esac; \
-    curl -L -o /usr/bin/opa https://github.com/open-policy-agent/opa/releases/download/v${OPA_VERSION}/opa_linux_${arch} && \
+    curl -L -o /usr/bin/opa https://github.com/open-policy-agent/opa/releases/download/${OPA_VERSION}/opa_linux_${arch}_static && \
     chmod +x /usr/bin/opa
 
 # Vault

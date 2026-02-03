@@ -1,0 +1,44 @@
+name: Test Dockerfile
+
+on:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  test-dockerfile:
+    name: Test Dockerfile Build and Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Build Docker image
+        run: docker build -t iac-ci:test .
+
+      - name: Test basic commands
+        run: |
+          docker run --rm iac-ci:test "echo 'Image runs successfully'"
+          docker run --rm iac-ci:test "bash --version"
+          docker run --rm iac-ci:test "git --version"
+          docker run --rm iac-ci:test "curl --version"
+          docker run --rm iac-ci:test "python3 --version"
+          docker run --rm iac-ci:test "pip --version"
+          docker run --rm iac-ci:test "jq --version"
+          docker run --rm iac-ci:test "make --version"
+          docker run --rm iac-ci:test "aws --version"
+          docker run --rm iac-ci:test "kubectl version --client"
+          docker run --rm iac-ci:test "helm version"
+          docker run --rm iac-ci:test "tfenv --version"
+          docker run --rm iac-ci:test "command -v terraform"
+          docker run --rm iac-ci:test "terragrunt --version"
+          docker run --rm iac-ci:test "vault version"
+          docker run --rm iac-ci:test "opa version"
+          docker run --rm iac-ci:test "conftest --version"
+          docker run --rm iac-ci:test "yq --version"
+          docker run --rm iac-ci:test "kustomize version"
+          docker run --rm iac-ci:test "flux --version"
+          docker run --rm iac-ci:test "psql --version"
+          docker run --rm iac-ci:test "mysql --version"
+          docker run --rm iac-ci:test "rover --version"
+          echo "✅ All basic command tests passed!"
