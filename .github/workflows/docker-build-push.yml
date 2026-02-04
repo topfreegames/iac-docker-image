@@ -16,7 +16,7 @@ jobs:
     - name: Set Up Docker Buildx
       uses: docker/setup-buildx-action@v3
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     - name: Get the current release version 
       id: vars
       run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
