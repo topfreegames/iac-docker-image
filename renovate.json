@@ -6,7 +6,8 @@
     {
       "matchPackageNames": ["curl/curl"],
       "versioning": "regex:^(?<major>\\d+)[._](?<minor>\\d+)[._](?<patch>\\d+)$",
-      "extractVersion": "^curl-(?<version>\\d+\\_\\d+\\_\\d+)$"
+      "extractVersion": "^curl-(?<version>\\d+\\_\\d+\\_\\d+)$",
+      "extractVersionTemplate": "{{replace '_' '.' version}}"
     },
     {
       "matchPackageNames": ["kubernetes-sigs/kustomize"],
