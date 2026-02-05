@@ -25,7 +25,7 @@
       "matchStrings": [
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s+ARG .*?=(?<currentValue>.*)"
       ],
-      "versioningTemplate": "{{#if (strictEq depName 'curl/curl')}}regex:^(?<major>\\d+)[._](?<minor>\\d+)[._](?<patch>\\d+)${{else}}semver-coerced{{/if}}"
+      "versioningTemplate": "{{#if (equals depName 'curl/curl')}}regex:^(?<major>\\d+)[._](?<minor>\\d+)[._](?<patch>\\d+)${{else}}semver-coerced{{/if}}"
     }
   ]
 }
