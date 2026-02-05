@@ -26,7 +26,7 @@
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s+ARG .*?=(?<currentValue>.*)"
       ],
       "extractVersionTemplate": "{{#if (equals depName 'curl/curl')}}^curl-(?<version>\\d+[_.]\\d+[_.]\\d+)${{else}}^v?(?<version>.+)${{/if}}",
-      "versioningTemplate": "{{#if (equals depName 'curl/curl')}}regex:^(?<major>\\d+)[._](?<minor>\\d+)[._](?<patch>\\d+)${{else}}semver-coerced{{/if}}"
+      "versioningTemplate": "{{#if (equals depName 'curl/curl')}}regex:^curl-(?<major>\\d+)[._](?<minor>\\d+)[._](?<patch>\\d+)${{else}}semver-coerced{{/if}}"
     }
   ]
 }
