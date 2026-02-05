@@ -5,7 +5,7 @@
   "packageRules": [
     {
       "matchPackageNames": ["curl/curl"],
-      "versioning": "semver",
+      "versioning": "regex:^(?<major>\\d+)[._](?<minor>\\d+)[._](?<patch>\\d+)$",
       "extractVersion": "^curl-(?<version>\\d+\\_\\d+\\_\\d+)$"
     },
     {
