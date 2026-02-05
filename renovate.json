@@ -4,6 +4,16 @@
   "dependencyDashboard": true,
   "packageRules": [
     {
+      "matchPackageNames": ["curl/curl"],
+      "versioning": "semver",
+      "extractVersion": "^curl-(?<version>\\d+\\.\\d+\\.\\d+)$"
+    },
+    {
+      "matchPackageNames": ["kubernetes-sigs/kustomize"],
+      "versioning": "semver",
+      "extractVersion": "^kustomize\/v5.8.0-(?<version>\\d+\\.\\d+\\.\\d+)$"
+    },
+    {
       "matchUpdateTypes": ["patch"],
       "groupName": "Patch Upgrades",
       "automerge": true
