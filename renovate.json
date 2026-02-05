@@ -18,7 +18,7 @@
     {
       "fileMatch": ["(^|/)Dockerfile$"],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\nARG .*?=(?<currentValue>.*)\\n"
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s+ARG .*?=(?<currentValue>.*)"
       ]
     }
   ]
