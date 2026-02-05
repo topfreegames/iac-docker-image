@@ -27,7 +27,14 @@
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["(^|/)Dockerfile$"],
+      "managerFilePatterns": ["/(^|/)Dockerfile$/"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s+ARG .*?=(?<currentValue>.*)"
+      ]
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)Dockerfile$/"],
       "matchStrings": [
         "# curl-renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s+ARG CURL_VERSION=(?<currentValue>.*)"
       ],
