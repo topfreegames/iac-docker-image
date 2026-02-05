@@ -4,6 +4,12 @@
   "dependencyDashboard": true,
   "packageRules": [
     {
+      "matchPackageNames": ["curl/curl"],
+      "versioning": "regex:^(?<major>\\d+)[._](?<minor>\\d+)[._](?<patch>\\d+)$",
+      "extractVersion": "^curl-(?<version>\\d+[_.]\\d+[_.]\\d+)$",
+      "extractVersionTemplate": "{{replace '_' '.' version}}"
+    },
+    {
       "matchPackageNames": ["kubernetes-sigs/kustomize"],
       "versioning": "semver",
       "extractVersion": "^kustomize\/v(?<version>\\d+\\.\\d+\\.\\d+)$"
@@ -24,8 +30,7 @@
       "fileMatch": ["(^|/)Dockerfile$"],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s+ARG .*?=(?<currentValue>.*)"
-      ],
-      "versioningTemplate": "{{#if (equals depName 'curl/curl')}}regex:^(?<major>\\d+)[._](?<minor>\\d+)[._](?<patch>\\d+)${{else}}semver-coerced{{/if}}"
+      ]
     }
   ]
 }
