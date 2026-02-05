@@ -24,12 +24,21 @@
       "automerge": false
     }
   ],
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": ["(^|/)Dockerfile$"],
+      "customType": "regex",
+      "managerFilePatterns": ["(^|/)Dockerfile$"],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s+ARG .*?=(?<currentValue>.*)"
       ]
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["(^|/)Dockerfile$"],
+      "matchStrings": [
+        "# curl-renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s+ARG CURL_VERSION=(?<currentValue>.*)"
+      ],
+      "autoReplaceStringTemplate": "# renovate: datasource={{{datasource}}} depName={{{depName}}}\\nARG CURL_VERSION={{{replace '_' '.' newValue}}}"
     }
   ]
 }
