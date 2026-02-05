@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "dependencyDashboard": true,
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch"],
+      "groupName": "Patch Upgrades",
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["minor"],
+      "groupName": "Minor Upgrades",
+      "automerge": false
+    }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["(^|/)Dockerfile$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\nARG .*?=(?<currentValue>.*)\\n"
+      ]
+    }
+  ]
+}
