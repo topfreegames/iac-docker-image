@@ -2,6 +2,9 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "dependencyDashboard": true,
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
   "packageRules": [
     {
       "matchPackageNames": ["curl/curl"],
@@ -16,7 +19,8 @@
     {
       "matchUpdateTypes": ["patch"],
       "groupName": "Patch Upgrades",
-      "automerge": true
+      "automerge": true,
+      "automergeStrategy": "squash"
     },
     {
       "matchUpdateTypes": ["minor"],
