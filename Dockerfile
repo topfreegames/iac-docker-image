@@ -9,28 +9,34 @@ ARG MAKE_VERSION=4.4.1
 ARG ZIP_VERSION=3.0
 ARG OPENSSH_VERSION=9.9_p2
 
-ARG KUBECTL_VERSION=v1.28.13
 ARG AWS_CLI_VERSION=2.22.10
 ARG PSQL_VERSION=15.13-r0
 ARG MYSQL_VERSION=11.4.8-r0
 
+# NOTE: curl tags use underscores; ARG stays dotted.
 # curl-renovate: datasource=github-releases depName=curl/curl version=8_14_1
 ARG CURL_VERSION=8.14.1
 
 # renovate: datasource=github-releases depName=jqlang/jq
 ARG JQ_VERSION=1.7.1
 
-# renovate: datasource=github-releases depName=fluxcd/flux2
-ARG FLUX_VERSION=2.4.0
-
-# renovate: datasource=github-releases depName=mikefarah/yq
-ARG YQ_VERSION=4.44.5
-
 # renovate: datasource=github-releases depName=containerbase/python-prebuild
 ARG PYTHON_VERSION=3.12.12
 
+# renovate: datasource=pypi depName=pip
+ARG PY3_PIP_VERSION=24.3.1
+
+# renovate: datasource=github-releases depName=kubernetes-sigs/kustomize
+ARG KUSTOMIZE_VERSION=5.5.0
+
+# renovate: datasource=github-releases depName=fluxcd/flux2
+ARG FLUX_VERSION=2.4.0
+
 # renovate: datasource=github-releases depName=helm/helm
 ARG HELM_VERSION=3.16.3
+
+# renovate: datasource=github-releases depName=mikefarah/yq
+ARG YQ_VERSION=4.44.5
 
 # renovate: datasource=github-releases depName=hashicorp/vault
 ARG VAULT_VERSION=1.17.5
@@ -41,23 +47,20 @@ ARG CONFTEST_VERSION=0.59.0
 # renovate: datasource=github-releases depName=tfutils/tfenv
 ARG TFENV_VERSION=v3.0.0
 
+# renovate: datasource=github-releases depName=kubernetes/kubernetes
+ARG KUBECTL_VERSION=v1.28.13
+
 # renovate: datasource=github-releases depName=gruntwork-io/terragrunt
 ARG TERRAGRUNT=v0.69.9
+
+# renovate: datasource=github-releases depName=im2nguyen/rover
+ARG ROVER_VERSION=0.3.3
 
 # renovate: datasource=github-releases depName=rsafonseca/helm-diff
 ARG HELM_DIFF_VERSION=v3.9.10
 
 # renovate: datasource=github-releases depName=open-policy-agent/opa
 ARG OPA_VERSION=v1.4.2
-
-# renovate: datasource=github-releases depName=im2nguyen/rover
-ARG ROVER_VERSION=0.3.3
-
-# renovate: datasource=github-releases depName=kubernetes-sigs/kustomize
-ARG KUSTOMIZE_VERSION=5.5.0
-
-# renovate: datasource=pypi depName=pip
-ARG PY3_PIP_VERSION=24.3.1
 
 # Base dependencies
 RUN apk update && \
