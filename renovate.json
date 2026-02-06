@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "dependencyDashboard": true,
-  "allowedPostUpgradeCommands": ["node renovate-sync-alpine-depnames.js"],
+  "allowedCommands": ["node renovate-sync-alpine-depnames.js"],
   "packageRules": [
     {
       "matchPackageNames": ["curl/curl"],
