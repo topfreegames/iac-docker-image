@@ -23,6 +23,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
+          fetch-depth: 0
 
       - name: Sync repology depName namespace
         env:
@@ -31,7 +32,13 @@ jobs:
           set -euo pipefail
           git fetch origin "${BASE_REF}"
 
-          if ! git diff "origin/${BASE_REF}...HEAD" -- Dockerfile | grep -q "^[-+]FROM alpine:"; then
+          if git merge-base --is-ancestor "origin/${BASE_REF}" HEAD; then
+            DIFF_RANGE="origin/${BASE_REF}...HEAD"
+          else
+            DIFF_RANGE="origin/${BASE_REF}..HEAD"
+          fi
+
+          if ! git diff "${DIFF_RANGE}" -- Dockerfile | grep -q "^[-+]FROM alpine:"; then
             echo "Alpine base not changed; skipping."
             exit 0
           fi
