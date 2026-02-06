@@ -2,15 +2,31 @@ FROM alpine:3.21
 
 LABEL maintainer="Wildlife Studios"
 
+# renovate: datasource=repology depName=alpine_3_21/bash versioning=loose
 ARG BASH_VERSION=5.2.37
+
+# renovate: datasource=repology depName=alpine_3_21/grep versioning=loose
 ARG GREP_VERSION=3.11
+
+# renovate: datasource=repology depName=alpine_3_21/git versioning=loose
 ARG GIT_VERSION=2.47.3
+
+# renovate: datasource=repology depName=alpine_3_21/make versioning=loose
 ARG MAKE_VERSION=4.4.1
+
+# renovate: datasource=repology depName=alpine_3_21/zip versioning=loose
 ARG ZIP_VERSION=3.0
+
+# renovate: datasource=repology depName=alpine_3_21/openssh versioning=loose
 ARG OPENSSH_VERSION=9.9_p2
 
+# renovate: datasource=repology depName=alpine_3_21/aws-cli versioning=loose
 ARG AWS_CLI_VERSION=2.22.10
+
+# renovate: datasource=repology depName=alpine_3_21/postgresql15-client versioning=loose
 ARG PSQL_VERSION=15.13-r0
+
+# renovate: datasource=repology depName=alpine_3_21/mysql-client versioning=loose
 ARG MYSQL_VERSION=11.4.8-r0
 
 # NOTE: curl tags use underscores; ARG stays dotted.
