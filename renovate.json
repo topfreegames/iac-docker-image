@@ -5,8 +5,7 @@
   "packageRules": [
     {
       "matchPackageNames": ["curl/curl"],
-      "versioning": "regex:^(?<major>\\d+)[._](?<minor>\\d+)[._](?<patch>\\d+)$",
-      "extractVersion": "^curl-(?<version>\\d+[_]\\d+[_]\\d+)$"
+      "versioning": "regex:^(?<major>\\d+)[._](?<minor>\\d+)[._](?<patch>\\d+)$"
     },
     {
       "matchPackageNames": ["kubernetes-sigs/kustomize"],
@@ -38,7 +37,9 @@
       "matchStrings": [
         "# curl-renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s+ARG CURL_VERSION=(?<currentValue>.*)"
       ],
-      "autoReplaceStringTemplate": "# curl-renovate: datasource={{{datasource}}} depName={{{depName}}}\nARG CURL_VERSION={{{replace '_' '.' newValue}}}"
+      "extractVersion": "^curl-(?<version>\\d+[_]\\d+[_]\\d+)$",
+      "extractVersionTemplate": "{{{ replace '_' '.' version }}}",
+      "autoReplaceStringTemplate": "# curl-renovate: datasource={{{datasource}}} depName={{{depName}}}\nARG CURL_VERSION={{{newValue}}}"
     }
   ]
 }
