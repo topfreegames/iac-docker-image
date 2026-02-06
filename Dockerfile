@@ -18,7 +18,7 @@ ARG MAKE_VERSION=4.4.1
 ARG ZIP_VERSION=3.0
 
 # renovate: datasource=repology depName=alpine_3_21/openssh versioning=loose
-ARG OPENSSH_VERSION=9.9_p2
+ARG OPENSSH_VERSION=9.9_p2-r0
 
 # renovate: datasource=repology depName=alpine_3_21/aws-cli versioning=loose
 ARG AWS_CLI_VERSION=2.22.10
