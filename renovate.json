@@ -2,7 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "dependencyDashboard": true,
-  "allowedCommands": ["node renovate-sync-alpine-depnames.js"],
   "packageRules": [
     {
       "matchPackageNames": ["curl/curl"],
@@ -13,15 +12,6 @@
       "matchPackageNames": ["kubernetes-sigs/kustomize"],
       "versioning": "semver",
       "extractVersion": "^kustomize\/v(?<version>\\d+\\.\\d+\\.\\d+)$"
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["alpine"],
-      "groupName": "Alpine Base Image",
-      "postUpgradeTasks": {
-        "commands": ["node renovate-sync-alpine-depnames.js"],
-        "fileFilters": ["Dockerfile"]
-      }
     },
     {
       "matchUpdateTypes": ["patch"],
