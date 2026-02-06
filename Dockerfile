@@ -14,7 +14,7 @@ ARG AWS_CLI_VERSION=2.22.10
 ARG PSQL_VERSION=15.13-r0
 ARG MYSQL_VERSION=11.4.8-r0
 
-# curl-renovate: datasource=github-releases depName=curl/curl
+# curl-renovate: datasource=github-releases depName=curl/curl version=8_14_1
 ARG CURL_VERSION=8.14.1
 
 # renovate: datasource=github-releases depName=jqlang/jq

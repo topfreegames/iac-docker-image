@@ -5,7 +5,8 @@
   "packageRules": [
     {
       "matchPackageNames": ["curl/curl"],
-      "versioning": "regex:^(?<major>\\d+)[._](?<minor>\\d+)[._](?<patch>\\d+)$"
+      "versioning": "regex:^(?<major>\\d+)[._](?<minor>\\d+)[._](?<patch>\\d+)$",
+      "extractVersion": "^curl-(?<version>\\d+_\\d+_\\d+)$"
     },
     {
       "matchPackageNames": ["kubernetes-sigs/kustomize"],
@@ -35,11 +36,9 @@
       "customType": "regex",
       "managerFilePatterns": ["/(^|/)Dockerfile$/"],
       "matchStrings": [
-        "# curl-renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s+ARG CURL_VERSION=(?<currentValue>.*)"
+        "# curl-renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?) version=(?<currentValue>\\S+)\\s+ARG CURL_VERSION=(?<currentValueDocker>\\S+)"
       ],
-      "extractVersion": "^curl-(?<version>\\d+[_]\\d+[_]\\d+)$",
-      "extractVersionTemplate": "{{{ replace '_' '.' version }}}",
-      "autoReplaceStringTemplate": "# curl-renovate: datasource={{{datasource}}} depName={{{depName}}}\nARG CURL_VERSION={{{newValue}}}"
+      "autoReplaceStringTemplate": "# curl-renovate: datasource={{{datasource}}} depName={{{depName}}} version={{{newValue}}}\nARG CURL_VERSION={{{replace '_' '.' newValue}}}"
     }
   ]
 }
