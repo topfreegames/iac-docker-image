@@ -21,5 +21,9 @@ jobs:
         run: |
           set -euo pipefail
           git fetch origin master next-base-image
-          git checkout -B next-base-image origin/master
-          git push --force-with-lease origin next-base-image
+          if git merge-base --is-ancestor origin/next-base-image origin/master; then
+            git checkout -B next-base-image origin/master
+            git push origin next-base-image
+          else
+            echo "next-base-image has unique commits; skipping sync."
+          fi
