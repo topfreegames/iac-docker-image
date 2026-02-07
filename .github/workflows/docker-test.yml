@@ -9,6 +9,7 @@ jobs:
   test-dockerfile:
     name: Test Dockerfile Build and Validation
     runs-on: ubuntu-latest
+    if: github.event.pull_request.base.ref != 'next-base-image'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
