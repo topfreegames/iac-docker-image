@@ -19,6 +19,16 @@
       "extractVersion": "^kustomize\/v(?<version>\\d+\\.\\d+\\.\\d+)$"
     },
     {
+      "matchBaseBranches": ["next-base-image"],
+      "enabled": false
+    },
+    {
+      "matchBaseBranches": ["next-base-image"],
+      "matchDatasources": ["docker", "repology"],
+      "groupName": "Base Image Updates",
+      "enabled": true
+    },
+    {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["alpine"],
       "groupName": "Base Image Upgrades",
