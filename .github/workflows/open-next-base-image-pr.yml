@@ -1,0 +1,29 @@
+name: Open PR for next-base-image
+
+on:
+  push:
+    branches:
+      - next-base-image
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  open-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Create or update PR to master
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ github.token }}
+          base: master
+          branch: next-base-image
+          title: "chore(base-image): sync base image updates"
+          body: |
+            Automated PR to merge base image updates from `next-base-image` into `master`.

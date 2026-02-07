@@ -1,51 +1,30 @@
-name: Renovate Sync Alpine DepNames
+name: Sync Base Image DepNames
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - next-base-image
     paths:
       - Dockerfile
 
 permissions:
   contents: write
-  pull-requests: read
 
 jobs:
   sync-alpine-depnames:
-    if: >
-      github.event.pull_request.user.login == 'renovate[bot]' &&
-      startsWith(github.event.pull_request.head.ref, 'renovate/') &&
-      github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
-      - name: Check out PR branch
+      - name: Check out branch
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
           fetch-depth: 0
 
       - name: Sync repology depName namespace
-        env:
-          BASE_REF: ${{ github.event.pull_request.base.ref }}
         run: |
           set -euo pipefail
-          git fetch origin "${BASE_REF}"
-
           last_message="$(git log -1 --pretty=%B)"
           if [ "${last_message}" = "chore: sync repology alpine depName" ]; then
             echo "Last commit is sync commit; skipping."
-            exit 0
-          fi
-
-          if git merge-base --is-ancestor "origin/${BASE_REF}" HEAD; then
-            DIFF_RANGE="origin/${BASE_REF}...HEAD"
-          else
-            DIFF_RANGE="origin/${BASE_REF}..HEAD"
-          fi
-
-          if ! git diff "${DIFF_RANGE}" -- Dockerfile | grep -q "^[-+]FROM alpine:"; then
-            echo "Alpine base not changed; skipping."
             exit 0
           fi
 
