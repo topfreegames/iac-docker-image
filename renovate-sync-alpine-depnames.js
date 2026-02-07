@@ -1,39 +1,6 @@
 const fs = require("fs");
 
 const dockerfilePath = "Dockerfile";
-const repologyApiBase = "https://repology.org/api/v1/project/";
-
-async function fetchRepologyVersion(repo, project) {
-  const cacheKey = `${repo}/${project}`;
-  if (fetchRepologyVersion.cache.has(cacheKey)) {
-    return fetchRepologyVersion.cache.get(cacheKey);
-  }
-
-  const url = `${repologyApiBase}${encodeURIComponent(project)}`;
-  const res = await fetch(url, {
-    headers: { "User-Agent": "renovate-sync-alpine-depnames" },
-  });
-
-  if (!res.ok) {
-    console.warn(`Repology lookup failed for ${project}: ${res.status}`);
-    fetchRepologyVersion.cache.set(cacheKey, null);
-    return null;
-  }
-
-  const data = await res.json();
-  const repoEntries = data.filter((entry) => entry.repo === repo);
-
-  const matched =
-    repoEntries.find((entry) => entry.binname === project) ||
-    repoEntries.find((entry) => entry.srcname === project) ||
-    repoEntries.find((entry) => entry.visiblename === project) ||
-    repoEntries[0];
-
-  const version = matched ? matched.origversion || matched.version : null;
-  fetchRepologyVersion.cache.set(cacheKey, version || null);
-  return version || null;
-}
-fetchRepologyVersion.cache = new Map();
 
 async function main() {
   const contents = fs.readFileSync(dockerfilePath, "utf8");
@@ -67,17 +34,7 @@ async function main() {
     updated += contents.slice(lastIndex, match.index);
 
     const newDepName = `alpine_${alpineRepo}/${project}`;
-    const newVersion = await fetchRepologyVersion(
-      `alpine_${alpineRepo}`,
-      project
-    );
-
-    const nextValue = newVersion || currentValue;
-    if (newVersion && newVersion !== currentValue) {
-      console.log(`Updated ${project}: ${currentValue} -> ${newVersion}`);
-    }
-
-    const replacement = `# renovate: datasource=repology depName=${newDepName}${commentTail}\nARG ${argName}=${nextValue}`;
+    const replacement = `# renovate: datasource=repology depName=${newDepName}${commentTail}\nARG ${argName}=${currentValue}`;
     if (replacement !== fullMatch) {
       changed = true;
     }
