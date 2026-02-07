@@ -2,31 +2,31 @@ FROM alpine:3.21
 
 LABEL maintainer="Wildlife Studios"
 
-# renovate: datasource=repology depName=alpine_edge/bash versioning=loose
+# renovate: datasource=repology depName=alpine_3_21/bash versioning=loose
 ARG BASH_VERSION=5.2.37
 
-# renovate: datasource=repology depName=alpine_edge/grep versioning=loose
+# renovate: datasource=repology depName=alpine_3_21/grep versioning=loose
 ARG GREP_VERSION=3.11
 
-# renovate: datasource=repology depName=alpine_edge/git versioning=loose
+# renovate: datasource=repology depName=alpine_3_21/git versioning=loose
 ARG GIT_VERSION=2.47.3
 
-# renovate: datasource=repology depName=alpine_edge/make versioning=loose
+# renovate: datasource=repology depName=alpine_3_21/make versioning=loose
 ARG MAKE_VERSION=4.4.1
 
-# renovate: datasource=repology depName=alpine_edge/zip versioning=loose
+# renovate: datasource=repology depName=alpine_3_21/zip versioning=loose
 ARG ZIP_VERSION=3.0
 
-# renovate: datasource=repology depName=alpine_edge/openssh versioning=loose
+# renovate: datasource=repology depName=alpine_3_21/openssh versioning=loose
 ARG OPENSSH_VERSION=9.9_p2-r0
 
-# renovate: datasource=repology depName=alpine_edge/aws-cli versioning=loose
+# renovate: datasource=repology depName=alpine_3_21/aws-cli versioning=loose
 ARG AWS_CLI_VERSION=2.22.10
 
-# renovate: datasource=repology depName=alpine_edge/postgresql15-client versioning=loose
+# renovate: datasource=repology depName=alpine_3_21/postgresql15-client versioning=loose
 ARG PSQL_VERSION=15.13-r0
 
-# renovate: datasource=repology depName=alpine_edge/mysql-client versioning=loose
+# renovate: datasource=repology depName=alpine_3_21/mysql-client versioning=loose
 ARG MYSQL_VERSION=11.4.8-r0
 
 # NOTE: curl tags use underscores; ARG stays dotted.
@@ -79,17 +79,20 @@ ARG HELM_DIFF_VERSION=v3.9.10
 ARG OPA_VERSION=v1.4.2
 
 # Base dependencies
-RUN apk update && \
-    apk add --no-cache \
+RUN apk update
+
+RUN apk add --no-cache \
     bash~=${BASH_VERSION} \
     curl~=${CURL_VERSION} \
     grep~=${GREP_VERSION} \
     git~=${GIT_VERSION}   \
-    python3~=${PYTHON_VERSION} \
     make~=${MAKE_VERSION} \
+    zip~=${ZIP_VERSION}
+
+RUN apk add --no-cache \
+    python3~=${PYTHON_VERSION} \
     py3-pip~=${PY3_PIP_VERSION}  \
     jq~=${JQ_VERSION} \
-    zip~=${ZIP_VERSION} \
     postgresql15-client~=${PSQL_VERSION} \
     mysql-client~=${MYSQL_VERSION} \
     openssh~=${OPENSSH_VERSION} \
