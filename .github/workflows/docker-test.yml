@@ -4,14 +4,31 @@ on:
   pull_request:
     branches:
       - '*'
+  workflow_run:
+    workflows: ["Renovate Sync Alpine DepNames"]
+    types: [completed]
 
 jobs:
   test-dockerfile:
     name: Test Dockerfile Build and Validation
     runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'pull_request' ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (pull_request)
+        if: github.event_name == 'pull_request'
         uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+      - name: Checkout repository (workflow_run)
+        if: github.event_name == 'workflow_run'
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          repository: ${{ github.event.workflow_run.head_repository.full_name }}
 
       - name: Build Docker image
         run: docker build -t iac-ci:test .
