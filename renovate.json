@@ -19,27 +19,6 @@
       "extractVersion": "^kustomize\/v(?<version>\\d+\\.\\d+\\.\\d+)$"
     },
     {
-      "matchBaseBranches": ["next-base-image"],
-      "enabled": false
-    },
-    {
-      "matchBaseBranches": ["next-base-image"],
-      "matchDatasources": ["docker", "repology"],
-      "groupName": "Base Image Updates",
-      "enabled": true
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["alpine"],
-      "groupName": "Base Image Upgrades",
-      "baseBranch": "next-base-image"
-    },
-    {
-      "matchDatasources": ["repology"],
-      "groupName": "Base Image Repology Updates",
-      "baseBranch": "next-base-image"
-    },
-    {
       "matchUpdateTypes": ["patch"],
       "groupName": "Patch Upgrades",
       "automerge": true,
