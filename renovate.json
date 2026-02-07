@@ -2,6 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "dependencyDashboard": true,
+  "baseBranches": ["master", "next-base-image"],
   "rebaseWhen": "behind-base-branch",
   "semanticCommits": "enabled",
   "semanticCommitType": "chore",
@@ -16,6 +17,17 @@
       "matchPackageNames": ["kubernetes-sigs/kustomize"],
       "versioning": "semver",
       "extractVersion": "^kustomize\/v(?<version>\\d+\\.\\d+\\.\\d+)$"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["alpine"],
+      "groupName": "Base Image Upgrades",
+      "baseBranch": "next-base-image"
+    },
+    {
+      "matchDatasources": ["repology"],
+      "groupName": "Base Image Repology Updates",
+      "baseBranch": "next-base-image"
     },
     {
       "matchUpdateTypes": ["patch"],
