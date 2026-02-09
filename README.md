@@ -24,7 +24,6 @@ Image used in our Infrastructure as Code pipelines.
 - `postgresql-client`
 - `python3`
 - `pip3`
-- `rover`
 - `terragrunt`
 - `tfenv`
 - `vault`
