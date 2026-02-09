@@ -158,7 +158,7 @@ RUN apkArch="$(apk --print-arch)"; \
       x86_64) arch=amd64 ;; \
       aarch64)  arch=arm64 ;; \
     esac; \
-    curl -L -o /bin/kubectl https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/${arch}/kubectl && \
+    curl -L -o /bin/kubectl https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/${arch}/kubectl && \
     chmod u+x /bin/kubectl
 
 #Helm Diff
