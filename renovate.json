@@ -19,6 +19,11 @@
       "extractVersion": "^kustomize\/v(?<version>\\d+\\.\\d+\\.\\d+)$"
     },
     {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["alpine"],
+      "enabled": false
+    },
+    {
       "matchUpdateTypes": ["patch"],
       "groupName": "Patch Upgrades",
       "automerge": true,
