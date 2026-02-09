@@ -9,11 +9,6 @@
   "semanticCommitScope": "deps",
   "packageRules": [
     {
-      "matchPackageNames": ["curl/curl"],
-      "versioning": "regex:^(?<major>\\d+)[._](?<minor>\\d+)[._](?<patch>\\d+)$",
-      "extractVersion": "^curl-(?<version>\\d+_\\d+_\\d+)$"
-    },
-    {
       "matchPackageNames": ["kubernetes-sigs/kustomize"],
       "versioning": "semver",
       "extractVersion": "^kustomize\/v(?<version>\\d+\\.\\d+\\.\\d+)$"
@@ -43,14 +38,6 @@
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s+ARG .*?=(?<currentValue>.*)"
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/(^|/)Dockerfile$/"],
-      "matchStrings": [
-        "# curl-renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?) version=(?<currentValue>\\S+)\\s+ARG CURL_VERSION=(?<currentValueDocker>\\S+)"
-      ],
-      "autoReplaceStringTemplate": "# curl-renovate: datasource={{{datasource}}} depName={{{depName}}} version={{{newValue}}}\nARG CURL_VERSION={{{replace '_' '.' newValue}}}"
     }
   ]
 }

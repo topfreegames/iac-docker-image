@@ -29,29 +29,28 @@ ARG PSQL_VERSION=15.13-r0
 # renovate: datasource=repology depName=alpine_3_21/mysql-client versioning=loose
 ARG MYSQL_VERSION=11.4.8-r0
 
-# NOTE: curl tags use underscores; ARG stays dotted.
-# curl-renovate: datasource=github-releases depName=curl/curl version=8_14_1
+# renovate: datasource=repology depName=alpine_3_21/curl versioning=loose
 ARG CURL_VERSION=8.14.1
 
 # renovate: datasource=github-releases depName=jqlang/jq
 ARG JQ_VERSION=1.7.1
 
-# renovate: datasource=github-releases depName=containerbase/python-prebuild
+# renovate: datasource=repology depName=alpine_3_21/python3 versioning=loose
 ARG PYTHON_VERSION=3.12.12
 
 # renovate: datasource=pypi depName=pip
 ARG PY3_PIP_VERSION=24.3.1
 
-# renovate: datasource=github-releases depName=kubernetes-sigs/kustomize
+# renovate: datasource=repology depName=alpine_3_21/kustomize versioning=loose
 ARG KUSTOMIZE_VERSION=5.5.0
 
-# renovate: datasource=github-releases depName=fluxcd/flux2
+# renovate: datasource=repology depName=alpine_3_21/flux versioning=loose
 ARG FLUX_VERSION=2.4.0
 
-# renovate: datasource=github-releases depName=helm/helm
+# renovate: datasource=repology depName=alpine_3_21/helm versioning=loose
 ARG HELM_VERSION=3.16.3
 
-# renovate: datasource=github-releases depName=mikefarah/yq
+# renovate: datasource=repology depName=alpine_3_21/yq-go versioning=loose
 ARG YQ_VERSION=4.44.5
 
 # renovate: datasource=github-releases depName=hashicorp/vault
