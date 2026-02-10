@@ -29,6 +29,7 @@ jobs:
           docker run --rm iac-ci:test "aws --version"
           docker run --rm iac-ci:test "kubectl version --client"
           docker run --rm iac-ci:test "helm version"
+          docker run --rm iac-ci:test "helm plugin list | awk 'NR>1 {print \$1}' | grep -qx diff || { echo 'ERROR: helm-diff plugin not installed'; helm plugin list; exit 1; }"
           docker run --rm iac-ci:test "tfenv --version"
           docker run --rm iac-ci:test "command -v terraform"
           docker run --rm iac-ci:test "terragrunt --version"
