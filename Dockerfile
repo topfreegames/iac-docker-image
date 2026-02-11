@@ -2,30 +2,76 @@ FROM alpine:3.23
 
 LABEL maintainer="Wildlife Studios"
 
+# renovate: datasource=repology depName=alpine_3_23/bash versioning=loose
 ARG BASH_VERSION=5.3.3
+
+# renovate: datasource=repology depName=alpine_3_23/curl versioning=loose
 ARG CURL_VERSION=8.17.0
+
+# renovate: datasource=repology depName=alpine_3_23/grep versioning=loose
 ARG GREP_VERSION=3.12
+
+# renovate: datasource=repology depName=alpine_3_23/git versioning=loose
 ARG GIT_VERSION=2.52.0
+
+# renovate: datasource=github-releases depName=jqlang/jq
 ARG JQ_VERSION=1.8.1
+
+# renovate: datasource=repology depName=alpine_3_23/make versioning=loose
 ARG MAKE_VERSION=4.4.1
+
+# renovate: datasource=repology depName=alpine_3_23/python3 versioning=loose
 ARG PYTHON_VERSION=3.12.13
+
+# renovate: datasource=pypi depName=pip
 ARG PY3_PIP_VERSION=25.1.1
+
+# renovate: datasource=repology depName=alpine_3_23/zip versioning=loose
 ARG ZIP_VERSION=3.0
+
+# renovate: datasource=repology depName=alpine_3_23/openssh versioning=loose
 ARG OPENSSH_VERSION=10.2_p1
+
+# renovate: datasource=repology depName=alpine_3_23/kustomize versioning=loose
 ARG KUSTOMIZE_VERSION=5.7.1
+
+# renovate: datasource=repology depName=alpine_3_23/flux versioning=loose
 ARG FLUX_VERSION=2.7.3
+
+# renovate: datasource=repology depName=alpine_3_23/aws-cli versioning=loose
 ARG AWS_CLI_VERSION=2.32.7
+
+# renovate: datasource=repology depName=alpine_3_23/helm versioning=loose
 ARG HELM_VERSION=3.19.0
+
+# renovate: datasource=repology depName=alpine_3_23/yq-go versioning=loose
 ARG YQ_VERSION=4.49.2
 
+# renovate: datasource=github-releases depName=hashicorp/vault
 ARG VAULT_VERSION=1.17.5
+
+# renovate: datasource=github-releases depName=open-policy-agent/conftest
 ARG CONFTEST_VERSION=0.59.0
+
+# renovate: datasource=github-releases depName=tfutils/tfenv
 ARG TFENV_VERSION=v3.0.0
+
+# renovate: datasource=github-releases depName=kubernetes/kubernetes
 ARG KUBECTL_VERSION=v1.28.13
+
+# renovate: datasource=github-releases depName=gruntwork-io/terragrunt
 ARG TERRAGRUNT=v0.69.9
+
+# renovate: datasource=repology depName=alpine_3_23/postgresql17-client versioning=loose
 ARG PSQL_VERSION=17.9
+
+# renovate: datasource=repology depName=alpine_3_23/mysql-client versioning=loose
 ARG MYSQL_VERSION=11.4.10
+
+# renovate: datasource=github-releases depName=topfreegames/helm-diff
 ARG HELM_DIFF_VERSION=v3.15.6-1
+
+# renovate: datasource=github-releases depName=open-policy-agent/opa
 ARG OPA_VERSION=v1.4.2
 
 # Base dependencies
