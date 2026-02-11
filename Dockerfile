@@ -25,7 +25,6 @@ ARG KUBECTL_VERSION=v1.28.13
 ARG TERRAGRUNT=v0.69.9
 ARG PSQL_VERSION=17.9
 ARG MYSQL_VERSION=11.4.10
-ARG ROVER_VERSION=0.3.3
 ARG HELM_DIFF_VERSION=v3.15.6-1
 ARG OPA_VERSION=v1.4.2
 
@@ -77,18 +76,6 @@ RUN apkArch="$(apk --print-arch)"; \
     esac; \
     curl -L https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_${arch}.tar.gz --output - | \
     tar -xzf - -C /usr/local/bin
-
-# rover
-RUN apkArch="$(apk --print-arch)"; \
-    case "$apkArch" in \
-      x86_64) arch=amd64 ;; \
-      aarch64)  arch=arm64 ;; \
-    esac; \
-    curl -LO https://github.com/im2nguyen/rover/releases/download/v${ROVER_VERSION}/rover_${ROVER_VERSION}_linux_amd64.zip && \
-    busybox unzip -d /tmp/ rover_${ROVER_VERSION}_linux_amd64.zip && \
-    mv /tmp/rover_v${ROVER_VERSION} /usr/bin/rover && \
-    chmod +x /usr/bin/rover && \
-    rm -r /tmp/* && rm rover_${ROVER_VERSION}_linux_amd64.zip
 
 # tfenv (terraform)
 RUN git clone -b ${TFENV_VERSION} --single-branch --depth 1 \
