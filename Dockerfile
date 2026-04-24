@@ -8,7 +8,7 @@ ARG GREP_VERSION=3.11
 ARG GIT_VERSION=2.47.3
 ARG JQ_VERSION=1.7.1
 ARG MAKE_VERSION=4.4.1
-ARG PYTHON_VERSION=3.12.12
+ARG PYTHON_VERSION=3.12.13
 ARG PY3_PIP_VERSION=24.3.1
 ARG ZIP_VERSION=3.0
 ARG OPENSSH_VERSION=9.9_p2
@@ -23,10 +23,10 @@ ARG CONFTEST_VERSION=0.59.0
 ARG TFENV_VERSION=v3.0.0
 ARG KUBECTL_VERSION=v1.28.13
 ARG TERRAGRUNT=v0.69.9
-ARG PSQL_VERSION=15.13-r0
-ARG MYSQL_VERSION=11.4.8-r0
+ARG PSQL_VERSION=15.17
+ARG MYSQL_VERSION=11.4.10
 ARG ROVER_VERSION=0.3.3
-ARG HELM_DIFF_VERSION=v3.9.10
+ARG HELM_DIFF_VERSION=v3.12.5
 ARG OPA_VERSION=v1.4.2
 
 # Base dependencies
@@ -114,7 +114,7 @@ RUN apkArch="$(apk --print-arch)"; \
     chmod u+x /bin/kubectl
 
 #Helm Diff
-RUN helm plugin install https://github.com/rsafonseca/helm-diff --version "${HELM_DIFF_VERSION}"
+RUN helm plugin install https://github.com/azlev/helm-diff --version "${HELM_DIFF_VERSION}"
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
 CMD [ "bash" ]
