@@ -26,7 +26,7 @@ ARG TERRAGRUNT=v0.69.9
 ARG PSQL_VERSION=15.13-r0
 ARG MYSQL_VERSION=11.4.8-r0
 ARG ROVER_VERSION=0.3.3
-ARG HELM_DIFF_VERSION=v3.12.5
+ARG HELM_DIFF_VERSION=v3.9.10
 ARG OPA_VERSION=v1.4.2
 
 # Base dependencies
@@ -114,7 +114,7 @@ RUN apkArch="$(apk --print-arch)"; \
     chmod u+x /bin/kubectl
 
 #Helm Diff
-RUN helm plugin install https://github.com/azlev/helm-diff --version "${HELM_DIFF_VERSION}"
+RUN helm plugin install https://github.com/rsafonseca/helm-diff --version "${HELM_DIFF_VERSION}"
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
 CMD [ "bash" ]
