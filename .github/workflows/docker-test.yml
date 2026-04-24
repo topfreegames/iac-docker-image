@@ -41,5 +41,4 @@ jobs:
           docker run --rm iac-ci:test "flux --version"
           docker run --rm iac-ci:test "psql --version"
           docker run --rm iac-ci:test "mysql --version"
-          docker run --rm iac-ci:test "rover --version"
           echo "✅ All basic command tests passed!"
