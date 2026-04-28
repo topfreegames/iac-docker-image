@@ -30,7 +30,7 @@ ARG PY3_PIP_VERSION=25.1.1
 ARG ZIP_VERSION=3.0
 
 # renovate: datasource=repology depName=alpine_3_23/openssh versioning=loose
-ARG OPENSSH_VERSION=10.2_p1
+ARG OPENSSH_VERSION=10.2_p1-r0
 
 # renovate: datasource=repology depName=alpine_3_23/kustomize versioning=loose
 ARG KUSTOMIZE_VERSION=5.7.1
