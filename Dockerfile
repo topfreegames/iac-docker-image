@@ -48,7 +48,7 @@ ARG HELM_VERSION=3.19.0
 ARG YQ_VERSION=4.49.2
 
 # renovate: datasource=github-releases depName=hashicorp/vault
-ARG VAULT_VERSION=1.17.5
+ARG VAULT_VERSION=2.0.0
 
 # renovate: datasource=github-releases depName=open-policy-agent/conftest
 ARG CONFTEST_VERSION=0.59.0
