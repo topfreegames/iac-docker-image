@@ -24,7 +24,7 @@ ARG MAKE_VERSION=4.4.1
 ARG PYTHON_VERSION=3.12.13
 
 # renovate: datasource=pypi depName=pip
-ARG PY3_PIP_VERSION=25.1.1
+ARG PY3_PIP_VERSION=25.3
 
 # renovate: datasource=repology depName=alpine_3_23/zip versioning=loose
 ARG ZIP_VERSION=3.0
@@ -48,19 +48,19 @@ ARG HELM_VERSION=3.19.0
 ARG YQ_VERSION=4.49.2
 
 # renovate: datasource=github-releases depName=hashicorp/vault
-ARG VAULT_VERSION=1.17.5
+ARG VAULT_VERSION=1.21.4
 
 # renovate: datasource=github-releases depName=open-policy-agent/conftest
-ARG CONFTEST_VERSION=0.59.0
+ARG CONFTEST_VERSION=0.68.2
 
 # renovate: datasource=github-releases depName=tfutils/tfenv
-ARG TFENV_VERSION=v3.0.0
+ARG TFENV_VERSION=v3.2.2
 
 # renovate: datasource=github-releases depName=kubernetes/kubernetes
-ARG KUBECTL_VERSION=v1.28.13
+ARG KUBECTL_VERSION=v1.36.0
 
 # renovate: datasource=github-releases depName=gruntwork-io/terragrunt
-ARG TERRAGRUNT=v0.69.9
+ARG TERRAGRUNT=v0.99.5
 
 # renovate: datasource=repology depName=alpine_3_23/postgresql17-client versioning=loose
 ARG PSQL_VERSION=17.9
@@ -72,7 +72,7 @@ ARG MYSQL_VERSION=11.4.10
 ARG HELM_DIFF_VERSION=v3.15.6-1
 
 # renovate: datasource=github-releases depName=open-policy-agent/opa
-ARG OPA_VERSION=v1.4.2
+ARG OPA_VERSION=v1.16.1
 
 # Base dependencies
 RUN apk update && \
