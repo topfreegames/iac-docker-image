@@ -66,7 +66,7 @@ ARG TERRAGRUNT=v0.69.9
 ARG PSQL_VERSION=17.9
 
 # renovate: datasource=repology depName=alpine_3_23/mysql-client versioning=loose
-ARG MYSQL_VERSION=11.4.10
+ARG MYSQL_VERSION=11.4.12-r0
 
 # renovate: datasource=github-releases depName=topfreegames/helm-diff
 ARG HELM_DIFF_VERSION=v3.15.6-1
