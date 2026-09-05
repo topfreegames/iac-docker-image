@@ -21,7 +21,7 @@ ARG JQ_VERSION=1.8.1
 ARG MAKE_VERSION=4.4.1
 
 # renovate: datasource=repology depName=alpine_3_23/python3 versioning=loose
-ARG PYTHON_VERSION=3.12.13
+ARG PYTHON_VERSION=3.12.14-r0
 
 # renovate: datasource=pypi depName=pip
 ARG PY3_PIP_VERSION=25.1.1
@@ -66,7 +66,7 @@ ARG TERRAGRUNT=v0.69.9
 ARG PSQL_VERSION=17.9
 
 # renovate: datasource=repology depName=alpine_3_23/mysql-client versioning=loose
-ARG MYSQL_VERSION=11.4.10
+ARG MYSQL_VERSION=11.4.12-r0
 
 # renovate: datasource=github-releases depName=topfreegames/helm-diff
 ARG HELM_DIFF_VERSION=v3.15.6-1
