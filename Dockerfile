@@ -2,11 +2,14 @@ FROM alpine:3.23
 
 LABEL maintainer="Wildlife Studios"
 
+# renovate: datasource=repology depName=alpine_3_23/ca-certificates versioning=loose
+ARG CA_CERTIFICATES_VERSION=20261020
+
 # renovate: datasource=repology depName=alpine_3_23/bash versioning=loose
 ARG BASH_VERSION=5.3.3
 
 # renovate: datasource=repology depName=alpine_3_23/curl versioning=loose
-ARG CURL_VERSION=8.17.0
+ARG CURL_VERSION=8.22.0
 
 # renovate: datasource=repology depName=alpine_3_23/grep versioning=loose
 ARG GREP_VERSION=3.12
@@ -15,13 +18,13 @@ ARG GREP_VERSION=3.12
 ARG GIT_VERSION=2.52.0
 
 # renovate: datasource=github-releases depName=jqlang/jq
-ARG JQ_VERSION=1.8.1
+ARG JQ_VERSION=1.8.2
 
 # renovate: datasource=repology depName=alpine_3_23/make versioning=loose
 ARG MAKE_VERSION=4.4.1
 
 # renovate: datasource=repology depName=alpine_3_23/python3 versioning=loose
-ARG PYTHON_VERSION=3.12.13
+ARG PYTHON_VERSION=3.12.15
 
 # renovate: datasource=pypi depName=pip
 ARG PY3_PIP_VERSION=25.1.1
@@ -63,10 +66,10 @@ ARG KUBECTL_VERSION=v1.28.13
 ARG TERRAGRUNT=v0.69.9
 
 # renovate: datasource=repology depName=alpine_3_23/postgresql17-client versioning=loose
-ARG PSQL_VERSION=17.9
+ARG PSQL_VERSION=17.11
 
 # renovate: datasource=repology depName=alpine_3_23/mysql-client versioning=loose
-ARG MYSQL_VERSION=11.4.10
+ARG MYSQL_VERSION=11.4.13
 
 # renovate: datasource=github-releases depName=topfreegames/helm-diff
 ARG HELM_DIFF_VERSION=v3.15.6-1
@@ -77,6 +80,7 @@ ARG OPA_VERSION=v1.4.2
 # Base dependencies
 RUN apk update && \
     apk add --no-cache \
+    ca-certificates-bundle~=${CA_CERTIFICATES_VERSION} \
     bash~=${BASH_VERSION} \
     curl~=${CURL_VERSION} \
     grep~=${GREP_VERSION} \
@@ -148,6 +152,9 @@ RUN apkArch="$(apk --print-arch)"; \
 
 #Helm Diff
 RUN helm plugin install https://github.com/topfreegames/helm-diff --version "${HELM_DIFF_VERSION}"
+
+# pip also trusts its own vendored CA bundle; point it at the system one instead
+RUN ln -sf /etc/ssl/certs/ca-certificates.crt "$(python3 -c 'from pip._vendor import certifi; print(certifi.where())')"
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
 CMD [ "bash" ]

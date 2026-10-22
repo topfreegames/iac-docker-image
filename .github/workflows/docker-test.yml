@@ -42,3 +42,16 @@ jobs:
           docker run --rm iac-ci:test "psql --version"
           docker run --rm iac-ci:test "mysql --version"
           echo "✅ All basic command tests passed!"
+
+      - name: Test distrusted CA roots are absent
+        run: |
+          # emSign ECC Root CA - G3 (eMudhra incident, Mozilla bug 2083449)
+          docker run --rm iac-ci:test "python3 -c '
+          import hashlib, re, ssl, sys
+          distrusted = {\"86A1ECBA089C4A8D3BBE2734C612BA341D813E043CF9E8A862CD5C57A36BBE6B\"}
+          pems = re.findall(r\"-----BEGIN CERTIFICATE-----.+?-----END CERTIFICATE-----\", open(\"/etc/ssl/certs/ca-certificates.crt\").read(), re.S)
+          found = distrusted & {hashlib.sha256(ssl.PEM_cert_to_DER_cert(p)).hexdigest().upper() for p in pems}
+          sys.exit(\"ERROR: distrusted roots in system bundle: %s\" % found if found else 0)
+          '"
+          docker run --rm iac-ci:test "test \"\$(readlink -f \"\$(python3 -c 'from pip._vendor import certifi; print(certifi.where())')\")\" = /etc/ssl/certs/ca-certificates.crt || { echo 'ERROR: pip is not using the system CA bundle'; exit 1; }"
+          echo "✅ No distrusted CA roots in system bundle!"
