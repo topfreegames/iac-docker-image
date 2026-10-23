@@ -2,7 +2,9 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "dependencyDashboard": true,
-  "baseBranches": ["master"],
+  "baseBranchPatterns": [
+    "master"
+  ],
   "rebaseWhen": "behind-base-branch",
   "semanticCommits": "enabled",
   "semanticCommitType": "chore",
@@ -11,7 +13,7 @@
     {
       "matchPackageNames": ["kubernetes-sigs/kustomize"],
       "versioning": "semver",
-      "extractVersion": "^kustomize\/v(?<version>\\d+\\.\\d+\\.\\d+)$"
+      "extractVersion": "^kustomize/v(?<version>\\d+\\.\\d+\\.\\d+)$"
     },
     {
       "matchDatasources": ["docker"],
@@ -20,16 +22,20 @@
     },
     {
       "matchUpdateTypes": ["patch"],
-      "excludePackageNames": ["alpine"],
       "groupName": "Patch Upgrades",
       "automerge": true,
-      "automergeStrategy": "squash"
+      "automergeStrategy": "squash",
+      "matchPackageNames": [
+        "!alpine"
+      ]
     },
     {
       "matchUpdateTypes": ["minor"],
-      "excludePackageNames": ["alpine"],
       "groupName": "Minor Upgrades",
-      "automerge": false
+      "automerge": false,
+      "matchPackageNames": [
+        "!alpine"
+      ]
     }
   ],
   "customManagers": [
