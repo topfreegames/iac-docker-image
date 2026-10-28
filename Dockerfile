@@ -54,13 +54,13 @@ ARG YQ_VERSION=4.53.3
 ARG VAULT_VERSION=2.2.1
 
 # renovate: datasource=github-releases depName=open-policy-agent/conftest
-ARG CONFTEST_VERSION=0.59.0
+ARG CONFTEST_VERSION=0.71.1
 
 # renovate: datasource=github-releases depName=tfutils/tfenv
-ARG TFENV_VERSION=v3.0.0
+ARG TFENV_VERSION=v3.2.2
 
 # renovate: datasource=github-releases depName=kubernetes/kubernetes
-ARG KUBECTL_VERSION=v1.28.13
+ARG KUBECTL_VERSION=v1.37.2
 
 # renovate: datasource=github-releases depName=gruntwork-io/terragrunt
 ARG TERRAGRUNT=v1.2.1
@@ -75,7 +75,7 @@ ARG MYSQL_VERSION=11.8.9
 ARG HELM_DIFF_VERSION=v3.15.6-1
 
 # renovate: datasource=github-releases depName=open-policy-agent/opa
-ARG OPA_VERSION=v1.4.2
+ARG OPA_VERSION=v1.21.4
 
 # Base dependencies
 RUN apk update && \
