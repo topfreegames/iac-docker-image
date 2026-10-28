@@ -2,53 +2,53 @@ FROM alpine:3.24
 
 LABEL maintainer="Wildlife Studios"
 
-# renovate: datasource=repology depName=alpine_3_23/ca-certificates versioning=loose
+# renovate: datasource=repology depName=alpine_3_24/ca-certificates versioning=loose
 ARG CA_CERTIFICATES_VERSION=20261020
 
-# renovate: datasource=repology depName=alpine_3_23/bash versioning=loose
-ARG BASH_VERSION=5.3.3
+# renovate: datasource=repology depName=alpine_3_24/bash versioning=loose
+ARG BASH_VERSION=5.3.9
 
-# renovate: datasource=repology depName=alpine_3_23/curl versioning=loose
+# renovate: datasource=repology depName=alpine_3_24/curl versioning=loose
 ARG CURL_VERSION=8.23.0
 
-# renovate: datasource=repology depName=alpine_3_23/grep versioning=loose
+# renovate: datasource=repology depName=alpine_3_24/grep versioning=loose
 ARG GREP_VERSION=3.12
 
-# renovate: datasource=repology depName=alpine_3_23/git versioning=loose
-ARG GIT_VERSION=2.52.0
+# renovate: datasource=repology depName=alpine_3_24/git versioning=loose
+ARG GIT_VERSION=2.54.0
 
 # renovate: datasource=github-releases depName=jqlang/jq
 ARG JQ_VERSION=1.8.2
 
-# renovate: datasource=repology depName=alpine_3_23/make versioning=loose
+# renovate: datasource=repology depName=alpine_3_24/make versioning=loose
 ARG MAKE_VERSION=4.4.1
 
-# renovate: datasource=repology depName=alpine_3_23/python3 versioning=loose
-ARG PYTHON_VERSION=3.12.16
+# renovate: datasource=repology depName=alpine_3_24/python3 versioning=loose
+ARG PYTHON_VERSION=3.14.10
 
-# renovate: datasource=repology depName=alpine_3_23/py3-pip versioning=loose
-ARG PY3_PIP_VERSION=25.1.1
+# renovate: datasource=repology depName=alpine_3_24/py3-pip versioning=loose
+ARG PY3_PIP_VERSION=26.1.2
 
-# renovate: datasource=repology depName=alpine_3_23/zip versioning=loose
+# renovate: datasource=repology depName=alpine_3_24/zip versioning=loose
 ARG ZIP_VERSION=3.0
 
-# renovate: datasource=repology depName=alpine_3_23/openssh versioning=loose
-ARG OPENSSH_VERSION=10.2_p1-r0
+# renovate: datasource=repology depName=alpine_3_24/openssh versioning=loose
+ARG OPENSSH_VERSION=10.3_p1-r1
 
-# renovate: datasource=repology depName=alpine_3_23/kustomize versioning=loose
-ARG KUSTOMIZE_VERSION=5.7.1
+# renovate: datasource=repology depName=alpine_3_24/kustomize versioning=loose
+ARG KUSTOMIZE_VERSION=5.8.1
 
-# renovate: datasource=repology depName=alpine_3_23/flux versioning=loose
-ARG FLUX_VERSION=2.7.3
+# renovate: datasource=repology depName=alpine_3_24/flux versioning=loose
+ARG FLUX_VERSION=2.8.1
 
-# renovate: datasource=repology depName=alpine_3_23/aws-cli versioning=loose
-ARG AWS_CLI_VERSION=2.32.7
+# renovate: datasource=repology depName=alpine_3_24/aws-cli versioning=loose
+ARG AWS_CLI_VERSION=2.34.63
 
-# renovate: datasource=repology depName=alpine_3_23/helm versioning=loose
+# renovate: datasource=repology depName=alpine_3_24/helm versioning=loose
 ARG HELM_VERSION=3.19.0
 
-# renovate: datasource=repology depName=alpine_3_23/yq-go versioning=loose
-ARG YQ_VERSION=4.49.2
+# renovate: datasource=repology depName=alpine_3_24/yq-go versioning=loose
+ARG YQ_VERSION=4.53.3
 
 # renovate: datasource=github-releases depName=hashicorp/vault
 ARG VAULT_VERSION=2.2.1
@@ -65,11 +65,11 @@ ARG KUBECTL_VERSION=v1.28.13
 # renovate: datasource=github-releases depName=gruntwork-io/terragrunt
 ARG TERRAGRUNT=v1.2.1
 
-# renovate: datasource=repology depName=alpine_3_23/postgresql17-client versioning=loose
+# renovate: datasource=repology depName=alpine_3_24/postgresql17-client versioning=loose
 ARG PSQL_VERSION=17.11
 
-# renovate: datasource=repology depName=alpine_3_23/mysql-client versioning=loose
-ARG MYSQL_VERSION=11.4.13
+# renovate: datasource=repology depName=alpine_3_24/mysql-client versioning=loose
+ARG MYSQL_VERSION=11.8.9
 
 # renovate: datasource=github-releases depName=topfreegames/helm-diff
 ARG HELM_DIFF_VERSION=v3.15.6-1
