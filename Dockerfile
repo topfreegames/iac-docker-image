@@ -26,8 +26,8 @@ ARG MAKE_VERSION=4.4.1
 # renovate: datasource=repology depName=alpine_3_23/python3 versioning=loose
 ARG PYTHON_VERSION=3.12.16
 
-# renovate: datasource=pypi depName=pip
-ARG PY3_PIP_VERSION=26.2.2
+# renovate: datasource=repology depName=alpine_3_23/py3-pip versioning=loose
+ARG PY3_PIP_VERSION=25.1.1
 
 # renovate: datasource=repology depName=alpine_3_23/zip versioning=loose
 ARG ZIP_VERSION=3.0
