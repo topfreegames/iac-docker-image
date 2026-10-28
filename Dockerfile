@@ -9,7 +9,7 @@ ARG CA_CERTIFICATES_VERSION=20261020
 ARG BASH_VERSION=5.3.3
 
 # renovate: datasource=repology depName=alpine_3_23/curl versioning=loose
-ARG CURL_VERSION=8.22.0
+ARG CURL_VERSION=8.23.0
 
 # renovate: datasource=repology depName=alpine_3_23/grep versioning=loose
 ARG GREP_VERSION=3.12
@@ -24,7 +24,7 @@ ARG JQ_VERSION=1.8.2
 ARG MAKE_VERSION=4.4.1
 
 # renovate: datasource=repology depName=alpine_3_23/python3 versioning=loose
-ARG PYTHON_VERSION=3.12.15
+ARG PYTHON_VERSION=3.12.16
 
 # renovate: datasource=pypi depName=pip
 ARG PY3_PIP_VERSION=25.1.1
@@ -63,7 +63,7 @@ ARG TFENV_VERSION=v3.0.0
 ARG KUBECTL_VERSION=v1.28.13
 
 # renovate: datasource=github-releases depName=gruntwork-io/terragrunt
-ARG TERRAGRUNT=v0.69.9
+ARG TERRAGRUNT=v1.2.1
 
 # renovate: datasource=repology depName=alpine_3_23/postgresql17-client versioning=loose
 ARG PSQL_VERSION=17.11
