@@ -75,7 +75,7 @@ ARG MYSQL_VERSION=11.8.9
 ARG HELM_DIFF_VERSION=v3.15.6-1
 
 # renovate: datasource=github-releases depName=open-policy-agent/opa
-ARG OPA_VERSION=v1.21.4
+ARG OPA_VERSION=v1.22.0
 
 # Base dependencies
 RUN apk update && \
