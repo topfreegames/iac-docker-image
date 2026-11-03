@@ -153,8 +153,15 @@ RUN apkArch="$(apk --print-arch)"; \
 #Helm Diff
 RUN helm plugin install https://github.com/topfreegames/helm-diff --version "${HELM_DIFF_VERSION}"
 
-# pip also trusts its own vendored CA bundle; point it at the system one instead
-RUN ln -sf /etc/ssl/certs/ca-certificates.crt "$(python3 -c 'from pip._vendor import certifi; print(certifi.where())')"
+# pip and aws-cli (botocore) vendor stale CA bundles that still carry distrusted/expired roots; point every vendored cacert.pem at the system one
+RUN find /usr/lib/python3*/site-packages -name cacert.pem -exec ln -sf /etc/ssl/certs/ca-certificates.crt {} \;
+
+# Drop every eMudhra root (emSign PKI) from the system bundle, not only the G3 root NSS removed
+RUN python3 -c '\
+import re, ssl; \
+bundle = "/etc/ssl/certs/ca-certificates.crt"; \
+pems = re.findall(r"-----BEGIN CERTIFICATE-----.+?-----END CERTIFICATE-----\n?", open(bundle).read(), re.S); \
+open(bundle, "w").write("".join(p for p in pems if b"emudhra" not in ssl.PEM_cert_to_DER_cert(p).lower()))'
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
 CMD [ "bash" ]
