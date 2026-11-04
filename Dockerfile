@@ -1,4 +1,4 @@
-FROM alpine:3.24
+FROM alpine:3.24.3
 
 LABEL maintainer="Wildlife Studios"
 
@@ -78,9 +78,11 @@ ARG HELM_DIFF_VERSION=v3.15.6-1
 ARG OPA_VERSION=v1.22.0
 
 # Base dependencies
+# eMudhra CA incident: ca-certificates-bundle 20261020-r0 drops emSign ECC Root CA - G3.
+# apk fails the build if it can't install at least that version.
 RUN apk update && \
     apk add --no-cache \
-    ca-certificates-bundle~=${CA_CERTIFICATES_VERSION} \
+    "ca-certificates-bundle>=${CA_CERTIFICATES_VERSION}-r0" \
     bash~=${BASH_VERSION} \
     curl~=${CURL_VERSION} \
     grep~=${GREP_VERSION} \
