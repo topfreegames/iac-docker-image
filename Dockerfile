@@ -78,11 +78,10 @@ ARG HELM_DIFF_VERSION=v3.15.6-1
 ARG OPA_VERSION=v1.22.0
 
 # Base dependencies
-# eMudhra CA incident: ca-certificates 20261020-r0 drops emSign ECC Root CA - G3.
+# eMudhra CA incident: ca-certificates-bundle 20261020-r0 drops emSign ECC Root CA - G3.
 # apk fails the build if it can't install at least that version.
 RUN apk update && \
     apk add --no-cache \
-    "ca-certificates>=${CA_CERTIFICATES_VERSION}-r0" \
     "ca-certificates-bundle>=${CA_CERTIFICATES_VERSION}-r0" \
     bash~=${BASH_VERSION} \
     curl~=${CURL_VERSION} \
@@ -155,10 +154,6 @@ RUN apkArch="$(apk --print-arch)"; \
 
 #Helm Diff
 RUN helm plugin install https://github.com/topfreegames/helm-diff --version "${HELM_DIFF_VERSION}"
-
-# eMudhra CA incident: Alpine still ships emSign Root CA - G1; distrust every emSign root. The ca-certificates trigger keeps it out on upgrades.
-RUN sed -i '/^mozilla\/emSign/s/^/!/' /etc/ca-certificates.conf && \
-    update-ca-certificates
 
 # pip trusts its own vendored certifi bundle by default; use the system one instead
 ENV PIP_CERT=/etc/ssl/certs/ca-certificates.crt
