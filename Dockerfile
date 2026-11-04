@@ -78,10 +78,11 @@ ARG HELM_DIFF_VERSION=v3.15.6-1
 ARG OPA_VERSION=v1.22.0
 
 # Base dependencies
-# eMudhra CA incident: ca-certificates-bundle 20261020-r0 drops emSign ECC Root CA - G3.
+# eMudhra CA incident: ca-certificates 20261020-r0 drops emSign ECC Root CA - G3.
 # apk fails the build if it can't install at least that version.
 RUN apk update && \
     apk add --no-cache \
+    "ca-certificates>=${CA_CERTIFICATES_VERSION}-r0" \
     "ca-certificates-bundle>=${CA_CERTIFICATES_VERSION}-r0" \
     bash~=${BASH_VERSION} \
     curl~=${CURL_VERSION} \
@@ -155,15 +156,12 @@ RUN apkArch="$(apk --print-arch)"; \
 #Helm Diff
 RUN helm plugin install https://github.com/topfreegames/helm-diff --version "${HELM_DIFF_VERSION}"
 
-# pip and aws-cli (botocore) vendor stale CA bundles that still carry distrusted/expired roots; point every vendored cacert.pem at the system one
-RUN find /usr/lib/python3*/site-packages -name cacert.pem -exec ln -sf /etc/ssl/certs/ca-certificates.crt {} \;
+# eMudhra CA incident: Alpine still ships emSign Root CA - G1; distrust every emSign root. The ca-certificates trigger keeps it out on upgrades.
+RUN sed -i '/^mozilla\/emSign/s/^/!/' /etc/ca-certificates.conf && \
+    update-ca-certificates
 
-# Drop every eMudhra root (emSign PKI) from the system bundle, not only the G3 root NSS removed
-RUN python3 -c '\
-import re, ssl; \
-bundle = "/etc/ssl/certs/ca-certificates.crt"; \
-pems = re.findall(r"-----BEGIN CERTIFICATE-----.+?-----END CERTIFICATE-----\n?", open(bundle).read(), re.S); \
-open(bundle, "w").write("".join(p for p in pems if b"emudhra" not in ssl.PEM_cert_to_DER_cert(p).lower()))'
+# pip trusts its own vendored certifi bundle by default; use the system one instead
+ENV PIP_CERT=/etc/ssl/certs/ca-certificates.crt
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
 CMD [ "bash" ]
