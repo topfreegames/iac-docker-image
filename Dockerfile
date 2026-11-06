@@ -33,7 +33,7 @@ ARG PY3_PIP_VERSION=26.1.2
 ARG ZIP_VERSION=3.0
 
 # renovate: datasource=repology depName=alpine_3_24/openssh versioning=loose
-ARG OPENSSH_VERSION=10.3_p1-r1
+ARG OPENSSH_VERSION=10.3_p1-r2
 
 # renovate: datasource=repology depName=alpine_3_24/kustomize versioning=loose
 ARG KUSTOMIZE_VERSION=5.8.1
@@ -75,7 +75,7 @@ ARG MYSQL_VERSION=11.8.9
 ARG HELM_DIFF_VERSION=v3.15.6-1
 
 # renovate: datasource=github-releases depName=open-policy-agent/opa
-ARG OPA_VERSION=v1.22.0
+ARG OPA_VERSION=v1.22.2
 
 # Base dependencies
 # eMudhra CA incident: ca-certificates-bundle 20261020-r0 drops emSign ECC Root CA - G3.
