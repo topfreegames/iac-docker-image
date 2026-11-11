@@ -1,4 +1,4 @@
-FROM alpine:3.24
+FROM alpine:3.24.4
 
 LABEL maintainer="Wildlife Studios"
 
@@ -78,9 +78,11 @@ ARG HELM_DIFF_VERSION=v3.15.6-1
 ARG OPA_VERSION=v1.22.3
 
 # Base dependencies
+# eMudhra CA incident: ca-certificates-bundle 20261020-r0 drops emSign ECC Root CA - G3.
+# apk fails the build if it can't install at least that version.
 RUN apk update && \
     apk add --no-cache \
-    ca-certificates-bundle~=${CA_CERTIFICATES_VERSION} \
+    "ca-certificates-bundle>=${CA_CERTIFICATES_VERSION}-r0" \
     bash~=${BASH_VERSION} \
     curl~=${CURL_VERSION} \
     grep~=${GREP_VERSION} \
@@ -153,8 +155,8 @@ RUN apkArch="$(apk --print-arch)"; \
 #Helm Diff
 RUN helm plugin install https://github.com/topfreegames/helm-diff --version "${HELM_DIFF_VERSION}"
 
-# pip also trusts its own vendored CA bundle; point it at the system one instead
-RUN ln -sf /etc/ssl/certs/ca-certificates.crt "$(python3 -c 'from pip._vendor import certifi; print(certifi.where())')"
+# pip trusts its own vendored certifi bundle by default; use the system one instead
+ENV PIP_CERT=/etc/ssl/certs/ca-certificates.crt
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
 CMD [ "bash" ]
