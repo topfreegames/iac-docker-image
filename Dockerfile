@@ -15,7 +15,7 @@ ARG CURL_VERSION=8.23.0
 ARG GREP_VERSION=3.12
 
 # renovate: datasource=repology depName=alpine_3_24/git versioning=loose
-ARG GIT_VERSION=2.54.0
+ARG GIT_VERSION=2.54.1-r0
 
 # renovate: datasource=github-releases depName=jqlang/jq
 ARG JQ_VERSION=1.8.2
@@ -75,7 +75,7 @@ ARG MYSQL_VERSION=11.8.9
 ARG HELM_DIFF_VERSION=v3.15.6-1
 
 # renovate: datasource=github-releases depName=open-policy-agent/opa
-ARG OPA_VERSION=v1.22.2
+ARG OPA_VERSION=v1.22.3
 
 # Base dependencies
 RUN apk update && \
