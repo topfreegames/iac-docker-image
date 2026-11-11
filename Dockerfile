@@ -63,7 +63,7 @@ ARG TFENV_VERSION=v3.2.2
 ARG KUBECTL_VERSION=v1.37.2
 
 # renovate: datasource=github-releases depName=gruntwork-io/terragrunt
-ARG TERRAGRUNT=v1.2.1
+ARG TERRAGRUNT=v0.84.1
 
 # renovate: datasource=repology depName=alpine_3_24/postgresql17-client versioning=loose
 ARG PSQL_VERSION=17.11
