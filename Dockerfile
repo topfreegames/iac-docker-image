@@ -51,7 +51,7 @@ ARG HELM_VERSION=3.19.0
 ARG YQ_VERSION=4.53.3
 
 # renovate: datasource=github-releases depName=hashicorp/vault
-ARG VAULT_VERSION=2.2.1
+ARG VAULT_VERSION=2.2.2
 
 # renovate: datasource=github-releases depName=open-policy-agent/conftest
 ARG CONFTEST_VERSION=0.71.1
@@ -63,7 +63,7 @@ ARG TFENV_VERSION=v3.2.2
 ARG KUBECTL_VERSION=v1.37.2
 
 # renovate: datasource=github-releases depName=gruntwork-io/terragrunt
-ARG TERRAGRUNT=v1.2.1
+ARG TERRAGRUNT=v1.2.2
 
 # renovate: datasource=repology depName=alpine_3_24/postgresql17-client versioning=loose
 ARG PSQL_VERSION=17.11
