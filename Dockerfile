@@ -66,7 +66,7 @@ ARG KUBECTL_VERSION=v1.37.2
 ARG TERRAGRUNT=v1.2.2
 
 # renovate: datasource=repology depName=alpine_3_24/postgresql17-client versioning=loose
-ARG PSQL_VERSION=17.11
+ARG PSQL_VERSION=17.12-r0
 
 # renovate: datasource=repology depName=alpine_3_24/mysql-client versioning=loose
 ARG MYSQL_VERSION=11.8.9
